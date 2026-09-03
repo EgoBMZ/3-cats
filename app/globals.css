@@ -218,6 +218,12 @@ a:hover {
 @media (min-width: 768px) {
   .md\:hidden { display: none; }
   .md\:flex { display: flex; }
+  .md\:inline-flex { display: inline-flex; }
+}
+@media (min-width: 1024px) {
+  .lg\:hidden { display: none; }
+  .lg\:flex { display: flex; }
+  .lg\:inline-flex { display: inline-flex; }
 }
 
 /* Input focus styles */
