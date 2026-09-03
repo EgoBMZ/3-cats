@@ -49,7 +49,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop nav links */}
-          <div style={{ display: 'flex', gap: '1.75rem', fontWeight: 600, fontSize: '0.95rem' }} className="hidden md:flex">
+          <div style={{ gap: '1.75rem', fontWeight: 600, fontSize: '0.95rem' }} className="hidden md:flex">
             {navLinks.map(link => (
               <a
                 key={link.href}
@@ -99,15 +99,15 @@ export default function Navbar() {
           </button>
 
           {/* CTA Button */}
-          <a href="#contact" className="btn btn-secondary" style={{ padding: '0.5rem 1.25rem', fontSize: '0.9rem' }}>
+          <a href="#contact" className="btn btn-secondary hidden md:inline-flex" style={{ padding: '0.5rem 1.25rem', fontSize: '0.9rem' }}>
             {t.nav.cta}
           </a>
 
           {/* Mobile hamburger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            style={{ display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: '0.25rem' }}
-            className="md:hidden"
+            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0.25rem' }}
+            className="md:hidden flex flex-col justify-center items-center"
             aria-label="Menu"
           >
             <div style={{ width: '22px', height: '2px', backgroundColor: 'var(--text-primary)', marginBottom: '5px', transition: 'all 0.3s', transform: menuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none' }} />
