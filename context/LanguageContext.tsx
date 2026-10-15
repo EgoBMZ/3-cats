@@ -10,361 +10,591 @@ type Dictionary = {
 
 const dictionaries: Record<Language, Dictionary> = {
   es: {
+    brand: {
+      name: "3Cats",
+      subtitle: "SOFTWARE DEVELOPMENT & PROJECT DELIVERY",
+      tagline: "IDEAS | PROYECTOS | RESULTADOS",
+      slogan: "Proyectos que impulsan tu negocio",
+      equation: "Estrategia + Personas + Tecnología = Resultados",
+      valueReal: "TECNOLOGÍA Y PERSONAS PARA UN MAYOR VALOR REAL",
+      bottomBarLeft: "PROYECTOS QUE IMPULSAN TU NEGOCIO",
+      bottomBarRight: "TECNOLOGÍA · PERSONAS · PROPÓSITO",
+    },
     nav: {
       services: "Servicios",
+      methodology: "Metodología",
+      solutions: "Soluciones",
       about: "Nosotros",
+      talent: "Red de Talento",
       contact: "Contacto",
-      cta: "Hablemos"
+      cta: "Agendar Consulta",
     },
     hero: {
-      title: "Tu visión de negocio, hecha realidad",
-      subtitle: "Del desafío al resultado.",
-      desc: "En 3Cats conectamos estrategia, tecnología y talento de élite para transformar los retos de tu empresa en soluciones concretas, escalables y rentables.",
-      btnPrimary: "Consulta gratuita",
-      btnSecondary: "Ver servicios"
+      tag: "SOFTWARE DEVELOPMENT & PROJECT DELIVERY",
+      motto: "IDEAS · PROYECTOS · RESULTADOS",
+      titlePrefix: "Proyectos que impulsan",
+      titleHighlight: "tu negocio",
+      equation: "Estrategia + Personas + Tecnología = Resultados",
+      desc: "Desarrollamos soluciones de software de clase empresarial, lideramos la gerencia estratégica de proyectos y brindamos consultoría tecnológica enfocada en resultados medibles para el sector corporativo.",
+      btnPrimary: "Iniciar Proyecto",
+      btnSecondary: "Ver Metodología",
+      pillars: [
+        {
+          id: "software",
+          title: "Desarrollo de software",
+          desc: "Arquitecturas cloud-native robustas, código limpio y plataformas de alta escalabilidad.",
+          icon: "code"
+        },
+        {
+          id: "pm",
+          title: "Gestión de proyectos",
+          desc: "Planificación rigurosa, equipos alineados y entrega continua bajo metodologías ágiles.",
+          icon: "users"
+        },
+        {
+          id: "consulting",
+          title: "Consultoría tecnológica",
+          desc: "Alineación estratégica de TI con los objetivos de negocio para maximizar el ROI.",
+          icon: "chart"
+        },
+        {
+          id: "custom",
+          title: "Soluciones a la medida",
+          desc: "Sistemas empresariales personalizados diseñados para la ventaja competitiva de tu organización.",
+          icon: "rocket"
+        }
+      ],
+      badgeTitle: "TECNOLOGÍA Y PERSONAS PARA UN MAYOR",
+      badgeHighlight: "VALOR REAL"
     },
-    about: {
-      tag: "¿Qué es 3Cats?",
-      title: "Tu socio estratégico en tecnología e innovación",
-      desc: "Somos un ecosistema de profesionales especializados en desarrollo de software, inteligencia artificial, marketing digital y consultoría de negocio. No somos una agencia tradicional — somos el equipo que tu empresa necesita, exactamente cuando lo necesita."
-    },
-    services: {
-      tag: "Lo que hacemos",
-      title: "Tres pilares. Un solo equipo. Resultados reales.",
+    equationSection: {
+      tag: "NUESTRA FÓRMULA DE VALOR",
+      title: "Estrategia + Personas + Tecnología = Resultados",
+      desc: "En el entorno corporativo actual, el software no se construye en el vacío. Combinamos visión de negocio, talento especializado de élite y tecnología probada para asegurar que cada proyecto genere impacto real en el balance de tu organización.",
       items: [
         {
-          title: "Tecnología",
-          desc: "Desarrollamos plataformas, aplicaciones y soluciones de IA que automatizan, escalan y generan ventaja competitiva para tu negocio."
+          title: "Estrategia Clara",
+          desc: "Definición rigurosa del roadmap, análisis de viabilidad técnica y alineación directa con los KPIs comerciales de tu empresa."
         },
         {
-          title: "Marketing Digital",
-          desc: "Diseñamos estrategias que posicionan tu marca, atraen clientes y convierten audiencias en resultados medibles."
+          title: "Personas de Élite",
+          desc: "Líderes técnicos, ingenieros senior y gerentes de proyecto certificados con probada experiencia en entregas de alto riesgo."
         },
         {
-          title: "Consultoría Estratégica",
-          desc: "Alineamos tu tecnología con tus metas de negocio. Tomamos decisiones basadas en datos, no en suposiciones."
+          title: "Tecnología Escalable",
+          desc: "Estándares modernos de ingeniería, ciberseguridad integrada, microservicios y despliegue continuo con cero fricción."
+        },
+        {
+          title: "Resultados Tangibles",
+          desc: "Entregables a tiempo, cumplimiento de presupuesto, código auditado y soluciones preparadas para el crecimiento sostenido."
         }
       ]
     },
-    custom: {
-      tag: "Nada genérico. Todo a medida.",
-      title: "Cada empresa es única. Tus soluciones también deberían serlo."
+    methodology: {
+      tag: "METODOLOGÍA & GESTIÓN DE PROYECTOS",
+      title: "La Gerencia de Proyectos convierte metas en",
+      titleHighlight: "realidades.",
+      desc: "Con planificación, equipo, tecnología y seguimiento, los objetivos dejan de ser una intención para convertirse en resultados medibles.",
+      nodes: [
+        {
+          num: "01",
+          title: "OBJETIVOS CLAROS",
+          subtitle: "Definimos el rumbo desde el inicio.",
+          detail: "Establecemos alcances precisos, métricas de éxito (OKRs/KPIs), matriz de riesgos y viabilidad técnica antes del primer sprint."
+        },
+        {
+          num: "02",
+          title: "EQUIPOS ALINEADOS",
+          subtitle: "Conectamos talento y capacidades.",
+          detail: "Configuramos squads multidisciplinarios con roles transparentes, comunicación directa y liderazgo enfocado en el objetivo del negocio."
+        },
+        {
+          num: "03",
+          title: "EJECUCIÓN DISCIPLINADA",
+          subtitle: "Gestionamos avances, riesgos y cambios.",
+          detail: "Monitoreo continuo de sprints, QA riguroso, control de desvíos en tiempo real y reportes ejecutivos para stakeholders."
+        },
+        {
+          num: "04",
+          title: "RESULTADOS TANGIBLES",
+          subtitle: "Impulsamos el éxito de tu organización.",
+          detail: "Despliegues en producción seguros, transferencia metodológica, observabilidad total y soporte empresarial post-lanzamiento."
+        }
+      ]
     },
-    value: {
-      title: "Por qué las empresas eligen 3Cats",
+    services: {
+      tag: "CAPACIDADES CORPORATIVAS B2B",
+      title: "Servicios diseñados para organizaciones exigentes",
+      desc: "Ofrecemos soporte integral de punta a punta: desde la ideación estratégica y arquitectura técnica hasta el desarrollo y gobierno continuo.",
       items: [
         {
-          title: "Talento curado, sin fricciones",
-          desc: "Accede a equipos multidisciplinarios pre-validados. Sin procesos de contratación, sin riesgos, con resultados desde el primer sprint."
+          id: "dev",
+          badge: "Core Engineering",
+          title: "Desarrollo de Software Enterprise",
+          desc: "Construimos aplicaciones web, móviles y backend escalables preparadas para transacciones masivas y altos estándares de disponibilidad.",
+          bullets: ["Microservicios y APIs RESTful/GraphQL", "Sistemas Cloud-Native en AWS/GCP/Azure", "Bases de datos distribuidas y alta concurrencia", "Auditoría de seguridad y control de calidad (QA)"]
         },
         {
-          title: "Un solo punto de contacto",
-          desc: "Coordinamos todo el proyecto — tecnología, diseño, marketing — bajo una sola gestión. Tú te enfocas en tu negocio, nosotros en la ejecución."
+          id: "pm",
+          badge: "Project Governance",
+          title: "Gestión y Gerencia de Proyectos",
+          desc: "Lideramos la dirección de iniciativas complejas asegurando cumplimiento estricto de plazos, presupuestos y calidad con marcos ágiles probados.",
+          bullets: ["Oficina de Gestión de Proyectos (PMO)", "Scrum & Kanban a escala corporativa", "Gestión activa de riesgos y dependencias", "Tableros de control y reporting para C-Level"]
         },
         {
-          title: "Tecnología que crece contigo",
-          desc: "Construimos con visión de largo plazo. Cada solución está diseñada para escalar con tu empresa, desde el MVP hasta la versión enterprise."
+          id: "consulting",
+          badge: "Strategic Advisory",
+          title: "Consultoría y Arquitectura Tecnológica",
+          desc: "Guiamos a las empresas en su proceso de modernización tecnológica, reducción de deuda técnica y adopción de arquitecturas del futuro.",
+          bullets: ["Evaluación y modernización de código legacy", "Estrategia de migración y optimización Cloud", "Políticas de ciberseguridad y gobernanza", "Alineación de stack con objetivos corporativos"]
+        },
+        {
+          id: "custom",
+          badge: "Custom Systems",
+          title: "Soluciones a la Medida & Automatización",
+          desc: "Desarrollo de herramientas propietarias, automatización de flujos operativos complejos e integración con los ecosistemas actuales de la empresa.",
+          bullets: ["Plataformas ERP y CRM personalizadas", "Workflows automatizados y orquestación", "Modelos de Inteligencia Artificial aplicada", "Integración de pasarelas, ERPs y servicios externos"]
         }
-      ],
-      stats: {
-        title: "Nuestro compromiso contigo",
-        desc: "Entregas puntuales, comunicación clara, calidad garantizada. Sin letra pequeña."
-      }
-    },
-    process: {
-      title: "Cómo Trabajamos",
-      desc: "Un proceso probado, transparente y orientado a resultados.",
-      steps: [
-        { title: "Descubrimiento", desc: "Escuchamos profundamente. Entendemos tus objetivos, contexto de negocio, usuarios y restricciones para diseñar la solución correcta desde el inicio." },
-        { title: "Planeación", desc: "Definimos el roadmap: alcances, tiempos, recursos y entregables. Sin sorpresas a mitad del camino." },
-        { title: "Diseño", desc: "Prototipamos y validamos experiencias (UX/UI) antes de escribir una sola línea de código. Decisiones visuales basadas en datos." },
-        { title: "Desarrollo", desc: "Construimos con tecnologías modernas, código limpio y prácticas de ingeniería de software de primer nivel." },
-        { title: "Pruebas", desc: "Testing riguroso en cada capa: funcional, de rendimiento y de seguridad. Solo lanzamos cuando estamos seguros." },
-        { title: "Implementación", desc: "Desplegamos de forma controlada, asegurando continuidad del negocio y una transición sin fricciones." },
-        { title: "Evolución", desc: "El lanzamiento es el inicio, no el final. Monitoreamos, iteramos y escalamos junto a tu empresa." }
       ]
     },
     solutions: {
-      title: "Soluciones que Construimos",
+      tag: "PORTAFOLIO DE SOLUCIONES",
+      title: "Soluciones de Alto Impacto que Implementamos",
+      desc: "Respaldamos operaciones corporativas a través de arquitecturas robustas y escalables.",
       items: [
-        { title: "Plataformas Empresariales", desc: "Sistemas centralizados y robustos que digitalizan y optimizan la operación de tu empresa a gran escala." },
-        { title: "Sistemas ERP y CRM", desc: "Gestión de recursos y relaciones con clientes, diseñada a la medida de tu industria y flujos de trabajo." },
-        { title: "Aplicaciones Web", desc: "Plataformas web de alto rendimiento, seguras, responsivas y optimizadas para conversión y experiencia de usuario." },
-        { title: "Aplicaciones Móviles", desc: "Apps nativas y multiplataforma con UX excepcional para iOS y Android que los usuarios adoptan y retienen." },
-        { title: "Marketplaces", desc: "Ecosistemas de comercio digital complejos: multi-vendor, pagos integrados, logística y analytics en tiempo real." },
-        { title: "Plataformas SaaS", desc: "Arquitecturas cloud-native listas para comercializar tu producto digital con modelos de suscripción escalables." },
-        { title: "Business Intelligence", desc: "Dashboards y reportes en tiempo real que convierten tus datos en decisiones estratégicas accionables." },
-        { title: "Automatización de Procesos", desc: "Workflows inteligentes que eliminan tareas manuales, reducen errores y liberan a tu equipo para lo que importa." },
-        { title: "Soluciones con IA", desc: "Desde chatbots hasta modelos predictivos: implementamos IA práctica que genera impacto medible en tu negocio." },
-        { title: "Integraciones y APIs", desc: "Unificamos tu stack tecnológico: CRMs, ERPs, pagos, logística, comunicaciones — todo hablando entre sí." }
+        { title: "Plataformas Empresariales", desc: "Sistemas centralizados para digitalizar y optimizar la operación de compañías a escala nacional e internacional." },
+        { title: "Sistemas ERP y CRM a Medida", desc: "Gestión operativa y de relaciones comerciales alineada fielmente a los flujos únicos de tu industria." },
+        { title: "Aplicaciones Web de Alto Tráfico", desc: "Soluciones web ultrarrápidas, seguras y preparadas para soportar picos críticos de concurrencia." },
+        { title: "Aplicaciones Móviles Nativas y Cross", desc: "Apps corporativas para iOS y Android con experiencia de usuario impecable para equipos y clientes." },
+        { title: "Portales SaaS & Multitenant", desc: "Arquitecturas cloud-ready para comercializar plataformas de software con modelos de suscripción y facturación." },
+        { title: "Business Intelligence & Dashboards", desc: "Consolidación de fuentes de datos dispersas en paneles analíticos en tiempo real para toma de decisiones ejecutivas." },
+        { title: "Automatización de Procesos con IA", desc: "Agentes inteligentes y automatización de flujos repetitivos que incrementan la productividad operativa." },
+        { title: "Arquitectura de Integraciones & APIs", desc: "Conexión fluida entre plataformas heredadas, servicios en la nube y software de terceros sin fricción." }
+      ]
+    },
+    stats: {
+      tag: "NUESTROS COMPROMISOS",
+      title: "Resultados que respaldan nuestra reputación",
+      desc: "La satisfacción corporativa se construye con métricas verificables y disciplina operativa.",
+      items: [
+        { num: "100%", label: "Proyectos entregados bajo metodología" },
+        { num: "+10", label: "Años de trayectoria combinada en ingeniería" },
+        { num: "4", label: "Pilares estratégicos integrados" },
+        { num: "99.9%", label: "Cumplimiento de acuerdos SLA en producción" }
       ]
     },
     talent: {
-      tag: "¿Eres un profesional tech?",
-      title: "Forma parte de la red 3Cats",
-      desc: "Conectamos a los mejores profesionales en tecnología, diseño y estrategia con proyectos reales que generan impacto. Sin burocracia, con flexibilidad y con un equipo que valora tu talento.",
+      tag: "¿BUSCAS TALENTO TECH SENIOR O ALIANZA?",
+      title: "Red de Profesionales & Partners Estratégicos",
+      desc: "En 3Cats conectamos ingenieros senior, arquitectos de software y líderes de proyecto con retos tecnológicos empresariales de alta envergadura.",
       benefits: [
-        { icon: "🚀", title: "Proyectos con propósito", desc: "Trabajarás en proyectos desafiantes y variados que amplían tu portfolio y experiencia." },
-        { icon: "🤝", title: "Comunidad de élite", desc: "Accede a una red de profesionales top de diferentes disciplinas y colabora en equipo." },
-        { icon: "🎯", title: "Flexibilidad real", desc: "Define tu modalidad: freelance, part-time o contrato. Tú eliges cómo y cuánto trabajas." }
+        { icon: "🛡️", title: "Proyectos Enterprise de Alto Calibre", desc: "Iniciativas estratégicas con clientes corporativos líderes en su sector." },
+        { icon: "⚡", title: "Cultura de Excelencia Técnica", desc: "Equipos que valoran las buenas prácticas, la arquitectura limpia y la entrega formal." },
+        { icon: "🤝", title: "Alianzas y Flexibilidad", desc: "Formatos de colaboración por proyecto o asignación de squad especializado." }
       ],
-      cta: "Únete a la red"
+      cta: "Registrarse en la Red"
+    },
+    contact: {
+      tag: "INICIAR CONVERSACIÓN",
+      title: "¿Listo para impulsar tus proyectos estratégicos?",
+      desc: "Conversemos sobre los retos y metas de tu compañía. Nuestro equipo directivo responderá en menos de 24 horas con una propuesta orientada a valor.",
+      form: {
+        name: "Nombre y Apellido",
+        namePlaceholder: "Ej. Carlos Mendoza",
+        email: "Correo Corporativo",
+        emailPlaceholder: "carlos@empresa.com",
+        company: "Empresa / Organización",
+        companyPlaceholder: "Ej. Corporación Andina S.A.",
+        service: "Servicio de Interés",
+        servicePlaceholder: "Selecciona una opción...",
+        message: "Describe el alcance del proyecto",
+        messagePlaceholder: "¿Cuáles son los objetivos, plazos estimados o desafíos de tu iniciativa?",
+        submit: "Solicitar Consulta Estratégica",
+        submitting: "Enviando solicitud...",
+        success: "¡Solicitud enviada con éxito! Un director de proyecto se comunicará contigo a la brevedad."
+      },
+      direct: {
+        emailLabel: "Correo Corporativo",
+        emailVal: "contacto@3cats.com",
+        locationLabel: "Atención B2B",
+        locationVal: "Proyectos Regionales & Globales",
+        hoursLabel: "SLA de Respuesta",
+        hoursVal: "Menos de 24 horas hábiles"
+      }
     },
     footer: {
-      title: "¿Listo para transformar tu negocio?",
-      desc: "Hablemos. Una conversación puede ser el inicio del proyecto que cambiará tu empresa para siempre.",
-      cta: "Agendar una llamada",
-      contactInfo: "Contáctanos",
-      aboutUs: "Sobre 3Cats",
-      hiring: "Para Talento",
-      hiringLink: "Únete a nuestra red",
-      rights: "Todos los derechos reservados."
+      title: "Impulsa tu organización con soluciones tecnológicas de alto nivel",
+      desc: "3Cats: Software Development & Project Delivery. Transformando metas complejas en realidades empresariales medibles.",
+      cta: "Agendar Llamada Directiva",
+      contactInfo: "Contacto Corporativo",
+      aboutUs: "Pilares de Servicio",
+      hiring: "Para Profesionales",
+      hiringLink: "Únete a la Red Senior",
+      rights: "Todos los derechos reservados. Confidencialidad y seguridad empresarial garantizada.",
+      links: [
+        { label: "Desarrollo de Software", href: "#services" },
+        { label: "Gerencia de Proyectos", href: "#methodology" },
+        { label: "Consultoría TI", href: "#services" },
+        { label: "Soluciones a Medida", href: "#solutions" }
+      ]
     },
     register: {
-      pageTag: "Red de Talento 3Cats",
-      pageTitle: "Tu próximo gran proyecto te espera",
-      pageDesc: "Completa tu perfil y te contactaremos cuando tengamos un proyecto que se alinee con tu experiencia y metas.",
-      leftTitle: "¿Por qué unirte?",
+      pageTag: "Red de Talento Senior 3Cats",
+      pageTitle: "Participa en proyectos empresariales de alto impacto",
+      pageDesc: "Buscamos ingenieros, arquitectos y directores de proyecto senior para integrarse a iniciativas corporativas de vanguardia.",
+      leftTitle: "¿Por qué colaborar con 3Cats?",
       leftBenefits: [
-        "Acceso a proyectos reales con empresas que están transformando sus industrias",
-        "Flexibilidad total: define tu modalidad, horario y tipo de proyecto",
-        "Comunidad de profesionales top en tecnología, diseño y estrategia",
-        "Apoyo de un equipo que valora tu desarrollo profesional"
+        "Involucramiento en proyectos con empresas líderes e industrias en transformación",
+        "Estructura organizada, metodologías ágiles consolidadas y respeto por los plazos",
+        "Tarifas competitivas a nivel enterprise con liquidación puntual garantizada",
+        "Ecosistema colaborativo con pares de alto nivel técnico"
       ],
       fields: {
         name: "Nombre completo",
-        namePlaceholder: "Ej. María García",
-        email: "Correo electrónico",
-        emailPlaceholder: "maria@ejemplo.com",
-        portfolio: "LinkedIn o Portfolio",
+        namePlaceholder: "Ej. Roberto Silva",
+        email: "Correo electrónico profesional",
+        emailPlaceholder: "roberto@dominio.com",
+        portfolio: "LinkedIn o Perfil de GitHub",
         portfolioPlaceholder: "https://linkedin.com/in/tu-perfil",
         specialization: "Área de especialización",
-        specializationPlaceholder: "Selecciona un área...",
-        experience: "Años de experiencia",
-        experiencePlaceholder: "Selecciona tu experiencia...",
-        modality: "Modalidad preferida",
-        modalityPlaceholder: "¿Cómo prefieres trabajar?",
-        availability: "Disponibilidad",
+        specializationPlaceholder: "Selecciona tu disciplina principal...",
+        experience: "Años de experiencia relevante",
+        experiencePlaceholder: "Selecciona tu rango de experiencia...",
+        modality: "Modalidad de trabajo preferida",
+        modalityPlaceholder: "¿Cómo prefieres colaborar?",
+        availability: "Disponibilidad semanal",
         availabilityPlaceholder: "¿Cuántas horas puedes dedicar?",
-        bio: "Cuéntanos sobre ti",
-        bioPlaceholder: "En 2-3 líneas: ¿qué haces, en qué eres brillante y qué tipo de proyectos te emocionan?"
+        bio: "Resumen de trayectoria y fortalezas",
+        bioPlaceholder: "Resume en 2-3 líneas tu experiencia técnica, proyectos insignia y entorno tecnológico habitual."
       },
       specializations: [
-        { value: "fullstack", label: "Desarrollo Full Stack" },
-        { value: "frontend", label: "Desarrollo Frontend" },
-        { value: "backend", label: "Desarrollo Backend" },
-        { value: "mobile", label: "Desarrollo Móvil (iOS / Android)" },
+        { value: "fullstack", label: "Ingeniería Full Stack Senior" },
+        { value: "architecture", label: "Arquitectura de Software / Cloud" },
+        { value: "backend", label: "Desarrollo Backend & Microservicios" },
+        { value: "frontend", label: "Desarrollo Frontend Avanzado (React/Next.js)" },
+        { value: "mobile", label: "Desarrollo Móvil (iOS / Android / Flutter)" },
         { value: "ai_ml", label: "Inteligencia Artificial / Machine Learning" },
-        { value: "data", label: "Data Engineering / Analytics" },
-        { value: "devops", label: "DevOps / Cloud / Infraestructura" },
-        { value: "design", label: "Diseño UI/UX" },
-        { value: "marketing", label: "Marketing Digital / Growth" },
-        { value: "consulting", label: "Consultoría de Negocio / Estrategia" },
-        { value: "pm", label: "Gestión de Proyectos / Producto" },
-        { value: "security", label: "Ciberseguridad" },
-        { value: "other", label: "Otro" }
+        { value: "data", label: "Data Engineering & Analytics" },
+        { value: "devops", label: "DevOps / SecOps / Infraestructura" },
+        { value: "pm", label: "Gerencia de Proyectos (PMP / Agile Coach)" },
+        { value: "qa", label: "QA Automation & Performance Testing" },
+        { value: "other", label: "Otra especialidad técnica" }
       ],
       experiences: [
-        { value: "0-1", label: "Menos de 1 año" },
-        { value: "1-3", label: "1 - 3 años" },
         { value: "3-5", label: "3 - 5 años" },
-        { value: "5-8", label: "5 - 8 años" },
-        { value: "8+", label: "Más de 8 años" }
+        { value: "5-8", label: "5 - 8 años (Senior)" },
+        { value: "8+", label: "Más de 8 años (Lead / Principal)" },
+        { value: "12+", label: "Más de 12 años (Director / Architect)" }
       ],
       modalities: [
         { value: "remote", label: "100% Remoto" },
         { value: "hybrid", label: "Híbrido" },
-        { value: "onsite", label: "Presencial" }
+        { value: "onsite", label: "Presencial por proyecto" }
       ],
       availabilities: [
-        { value: "full-time", label: "Tiempo completo (40h/semana)" },
-        { value: "part-time", label: "Medio tiempo (20h/semana)" },
-        { value: "freelance", label: "Freelance / Por proyecto" },
-        { value: "hours", label: "Por horas (menos de 20h/semana)" }
+        { value: "full-time", label: "Dedicación Completa (40h/semana)" },
+        { value: "part-time", label: "Media Dedicación (20h/semana)" },
+        { value: "consulting", label: "Advisory / Por Horas de Consultoría" },
+        { value: "sprint", label: "Por Sprints / Hitos de Entrega" }
       ],
-      submit: "Enviar mi perfil",
-      successTitle: "¡Perfil recibido!",
-      successDesc: "Gracias por querer ser parte de 3Cats. Revisaremos tu perfil y te contactaremos cuando tengamos un proyecto que encaje perfectamente contigo.",
-      successCta: "Volver al inicio"
+      submit: "Postular al Ecosistema",
+      successTitle: "¡Perfil recibido correctamente!",
+      successDesc: "Nuestro equipo técnico de talento evaluará tus credenciales y te contactará para proyectos que requieran tu nivel de experiencia.",
+      successCta: "Volver a la Página Principal"
     }
   },
   en: {
+    brand: {
+      name: "3Cats",
+      subtitle: "SOFTWARE DEVELOPMENT & PROJECT DELIVERY",
+      tagline: "IDEAS | PROJECTS | RESULTS",
+      slogan: "Projects that drive your business",
+      equation: "Strategy + People + Technology = Results",
+      valueReal: "TECHNOLOGY AND PEOPLE FOR GREATER REAL VALUE",
+      bottomBarLeft: "PROJECTS THAT DRIVE YOUR BUSINESS",
+      bottomBarRight: "TECHNOLOGY · PEOPLE · PURPOSE",
+    },
     nav: {
       services: "Services",
+      methodology: "Methodology",
+      solutions: "Solutions",
       about: "About Us",
+      talent: "Talent Network",
       contact: "Contact",
-      cta: "Let's Talk"
+      cta: "Schedule a Call",
     },
     hero: {
-      title: "Your business vision, made real",
-      subtitle: "From challenge to result.",
-      desc: "At 3Cats we connect strategy, technology, and elite talent to transform your company's challenges into concrete, scalable, and profitable solutions.",
-      btnPrimary: "Free Consultation",
-      btnSecondary: "See Services"
+      tag: "SOFTWARE DEVELOPMENT & PROJECT DELIVERY",
+      motto: "IDEAS · PROJECTS · RESULTS",
+      titlePrefix: "Projects that drive",
+      titleHighlight: "your business",
+      equation: "Strategy + People + Technology = Results",
+      desc: "We build enterprise-grade software solutions, lead strategic project management, and deliver high-impact technology consulting with measurable corporate ROI.",
+      btnPrimary: "Start a Project",
+      btnSecondary: "Explore Methodology",
+      pillars: [
+        {
+          id: "software",
+          title: "Software Development",
+          desc: "Robust cloud-native architectures, clean code, and high-scale enterprise platforms.",
+          icon: "code"
+        },
+        {
+          id: "pm",
+          title: "Project Management",
+          desc: "Rigorous planning, aligned teams, and continuous delivery under agile frameworks.",
+          icon: "users"
+        },
+        {
+          id: "consulting",
+          title: "Tech Consulting",
+          desc: "Strategic IT alignment with business objectives to maximize corporate ROI.",
+          icon: "chart"
+        },
+        {
+          id: "custom",
+          title: "Tailored Solutions",
+          desc: "Custom enterprise platforms engineered to deliver sustainable competitive advantage.",
+          icon: "rocket"
+        }
+      ],
+      badgeTitle: "TECHNOLOGY AND PEOPLE FOR GREATER",
+      badgeHighlight: "REAL VALUE"
     },
-    about: {
-      tag: "What is 3Cats?",
-      title: "Your strategic partner in technology and innovation",
-      desc: "We are an ecosystem of specialized professionals in software development, artificial intelligence, digital marketing, and business consulting. We're not a traditional agency — we're the team your company needs, exactly when it needs it."
-    },
-    services: {
-      tag: "What We Do",
-      title: "Three pillars. One team. Real results.",
+    equationSection: {
+      tag: "OUR VALUE FORMULA",
+      title: "Strategy + People + Technology = Results",
+      desc: "In today's corporate landscape, software cannot exist in a silo. We combine sharp business vision, elite specialized talent, and proven enterprise engineering to make sure every delivery accelerates your balance sheet.",
       items: [
         {
-          title: "Technology",
-          desc: "We develop platforms, applications, and AI solutions that automate, scale, and generate competitive advantage for your business."
+          title: "Clear Strategy",
+          desc: "Rigorous roadmap definition, technical feasibility analysis, and explicit alignment with corporate KPIs."
         },
         {
-          title: "Digital Marketing",
-          desc: "We design strategies that position your brand, attract clients, and convert audiences into measurable results."
+          title: "Elite People",
+          desc: "Senior technical leaders, software engineers, and certified project managers with proven execution track records."
         },
         {
-          title: "Strategic Consulting",
-          desc: "We align your technology with your business goals. We make data-driven decisions, not assumptions."
+          title: "Scalable Technology",
+          desc: "Modern engineering standards, baked-in cybersecurity, microservices, and continuous delivery with zero friction."
+        },
+        {
+          title: "Tangible Results",
+          desc: "On-time delivery, budget discipline, audited code quality, and platforms engineered for sustained organizational growth."
         }
       ]
     },
-    custom: {
-      tag: "Nothing generic. Everything tailored.",
-      title: "Every company is unique. Your solutions should be too."
+    methodology: {
+      tag: "METHODOLOGY & PROJECT DELIVERY",
+      title: "Project Management turns goals into",
+      titleHighlight: "realities.",
+      desc: "With planning, team alignment, technology, and oversight, objectives stop being an intention and become measurable outcomes.",
+      nodes: [
+        {
+          num: "01",
+          title: "CLEAR OBJECTIVES",
+          subtitle: "We set the direction from day one.",
+          detail: "We establish precise scopes, business KPIs/OKRs, risk matrices, and architectural feasibility before the first sprint begins."
+        },
+        {
+          num: "02",
+          title: "ALIGNED TEAMS",
+          subtitle: "We connect talent and capability.",
+          detail: "We assemble senior multidisciplinary squads with transparent roles, proactive communication, and business-focused leadership."
+        },
+        {
+          num: "03",
+          title: "DISCIPLINED EXECUTION",
+          subtitle: "We govern progress, risks, and changes.",
+          detail: "Continuous sprint tracking, rigorous QA automation, real-time risk mitigation, and executive reporting for stakeholders."
+        },
+        {
+          num: "04",
+          title: "TANGIBLE RESULTS",
+          subtitle: "We drive your organization's success.",
+          detail: "Secure production rollouts, methodology handoff, end-to-end observability, and enterprise post-launch support."
+        }
+      ]
     },
-    value: {
-      title: "Why companies choose 3Cats",
+    services: {
+      tag: "ENTERPRISE B2B CAPABILITIES",
+      title: "Technology services engineered for demanding corporations",
+      desc: "We provide end-to-end capabilities: from strategic ideation and enterprise architecture to robust development and governance.",
       items: [
         {
-          title: "Curated talent, no friction",
-          desc: "Access pre-validated multidisciplinary teams. No hiring processes, no risks, with results from the first sprint."
+          id: "dev",
+          badge: "Core Engineering",
+          title: "Enterprise Software Development",
+          desc: "We build scalable web, mobile, and backend systems ready for massive transaction volumes and critical SLA requirements.",
+          bullets: ["Microservices & RESTful/GraphQL APIs", "Cloud-Native systems on AWS/GCP/Azure", "High-concurrency distributed architectures", "Comprehensive QA and security audits"]
         },
         {
-          title: "Single point of contact",
-          desc: "We coordinate the entire project — technology, design, marketing — under one management. You focus on your business, we handle execution."
+          id: "pm",
+          badge: "Project Governance",
+          title: "End-to-End Project Delivery",
+          desc: "We lead complex initiatives with strict adherence to timelines, budgets, and quality standards through proven agile governance.",
+          bullets: ["Project Management Office (PMO)", "Scrum & Kanban at enterprise scale", "Proactive dependency & risk mitigation", "Executive dashboards for C-Level leadership"]
         },
         {
-          title: "Technology that grows with you",
-          desc: "We build with a long-term vision. Every solution is designed to scale with your company, from MVP to enterprise version."
+          id: "consulting",
+          badge: "Strategic Advisory",
+          title: "Tech Consulting & Architecture",
+          desc: "We guide organizations through system modernization, legacy refactoring, and cloud-native architecture adoption.",
+          bullets: ["Technical debt audit & code refactoring", "Cloud migration and DevOps pipelines", "Cybersecurity & IT governance standards", "Strategic tech stack optimization"]
+        },
+        {
+          id: "custom",
+          badge: "Custom Systems",
+          title: "Tailored Systems & Automation",
+          desc: "Custom-built platforms, workflow automation, and applied artificial intelligence integrated into your existing operational landscape.",
+          bullets: ["Custom ERP / CRM implementations", "Automated enterprise workflows", "Applied AI and machine learning models", "Third-party and ERP seamless integrations"]
         }
-      ],
-      stats: {
-        title: "Our commitment to you",
-        desc: "On-time delivery, clear communication, guaranteed quality. No fine print."
-      }
-    },
-    process: {
-      title: "How We Work",
-      desc: "A proven, transparent, and results-driven process.",
-      steps: [
-        { title: "Discovery", desc: "We listen deeply. We understand your objectives, business context, users, and constraints to design the right solution from the start." },
-        { title: "Planning", desc: "We define the roadmap: scope, timelines, resources, and deliverables. No surprises midway." },
-        { title: "Design", desc: "We prototype and validate experiences (UX/UI) before writing a single line of code. Visual decisions grounded in data." },
-        { title: "Development", desc: "We build with modern technologies, clean code, and top-tier software engineering practices." },
-        { title: "Testing", desc: "Rigorous testing at every layer: functional, performance, and security. We only launch when we're sure." },
-        { title: "Launch", desc: "We deploy in a controlled manner, ensuring business continuity and a frictionless transition." },
-        { title: "Evolution", desc: "The launch is the beginning, not the end. We monitor, iterate, and scale alongside your company." }
       ]
     },
     solutions: {
-      title: "Solutions We Build",
+      tag: "SOLUTIONS PORTFOLIO",
+      title: "High-Impact Enterprise Solutions",
+      desc: "Empowering corporate operations through robust and scalable digital architectures.",
       items: [
-        { title: "Enterprise Platforms", desc: "Centralized, robust systems that digitalize and optimize your company's operations at scale." },
-        { title: "ERP & CRM Systems", desc: "Resource and customer relationship management, tailored to your industry and workflows." },
-        { title: "Web Applications", desc: "High-performance, secure, responsive web platforms optimized for conversion and user experience." },
-        { title: "Mobile Applications", desc: "Native and cross-platform apps with exceptional UX for iOS and Android that users adopt and retain." },
-        { title: "Marketplaces", desc: "Complex digital commerce ecosystems: multi-vendor, integrated payments, logistics, and real-time analytics." },
-        { title: "SaaS Platforms", desc: "Cloud-native architectures ready to commercialize your digital product with scalable subscription models." },
-        { title: "Business Intelligence", desc: "Real-time dashboards and reports that turn your data into actionable strategic decisions." },
-        { title: "Process Automation", desc: "Intelligent workflows that eliminate manual tasks, reduce errors, and free your team for what matters." },
-        { title: "AI Solutions", desc: "From chatbots to predictive models: we implement practical AI that generates measurable impact for your business." },
-        { title: "Integrations & APIs", desc: "We unify your tech stack: CRMs, ERPs, payments, logistics, communications — all talking to each other." }
+        { title: "Enterprise Platforms", desc: "Centralized systems designed to digitize and streamline high-volume operations at multinational scale." },
+        { title: "Custom ERP & CRM Systems", desc: "Operational and client management platforms tailored exactly to your unique organizational workflows." },
+        { title: "High-Traffic Web Applications", desc: "Ultra-fast, secure, and resilient web solutions built to handle peak traffic demands." },
+        { title: "Native & Cross-Platform Mobile", desc: "Enterprise iOS and Android applications with intuitive UX for corporate teams and end users." },
+        { title: "SaaS & Multitenant Portals", desc: "Cloud architectures engineered to launch and scale subscription-based digital software products." },
+        { title: "Business Intelligence & BI Dashboards", desc: "Consolidation of scattered data sources into real-time analytical cockpits for executive decisions." },
+        { title: "AI-Powered Process Automation", desc: "Intelligent agents and automated workflows that eliminate manual friction and elevate operational speed." },
+        { title: "API Gateway & System Integration", desc: "Frictionless interconnectivity between legacy databases, modern cloud services, and external APIs." }
+      ]
+    },
+    stats: {
+      tag: "OUR COMMITMENT",
+      title: "Proven metrics backing our corporate delivery",
+      desc: "Corporate trust is founded on quantifiable outcomes and operational discipline.",
+      items: [
+        { num: "100%", label: "Projects delivered under rigorous methodology" },
+        { num: "+10", label: "Years of combined engineering and delivery track record" },
+        { num: "4", label: "Integrated strategic capability pillars" },
+        { num: "99.9%", label: "SLA compliance in high-availability production environments" }
       ]
     },
     talent: {
-      tag: "Are you a tech professional?",
-      title: "Join the 3Cats network",
-      desc: "We connect the best professionals in technology, design, and strategy with real projects that create impact. No bureaucracy, full flexibility, and a team that values your talent.",
+      tag: "SENIOR TECH TALENT & PARTNERSHIPS",
+      title: "Enterprise Professional & Partner Network",
+      desc: "At 3Cats we connect senior engineers, software architects, and agile delivery managers with major corporate initiatives.",
       benefits: [
-        { icon: "🚀", title: "Purposeful projects", desc: "Work on challenging and varied projects that expand your portfolio and experience." },
-        { icon: "🤝", title: "Elite community", desc: "Access a network of top professionals from different disciplines and collaborate as a team." },
-        { icon: "🎯", title: "Real flexibility", desc: "Define your modality: freelance, part-time, or contract. You choose how and how much you work." }
+        { icon: "🛡️", title: "Enterprise-Caliber Projects", desc: "High-stakes initiatives with leading companies across diverse industries." },
+        { icon: "⚡", title: "Engineering Excellence Culture", desc: "Teams dedicated to clean code, robust architectures, and disciplined delivery." },
+        { icon: "🤝", title: "Flexible Collaboration", desc: "Project-based engagements or dedicated senior squad placements." }
       ],
-      cta: "Join the network"
+      cta: "Apply to the Network"
+    },
+    contact: {
+      tag: "START A CONVERSATION",
+      title: "Ready to accelerate your corporate technology goals?",
+      desc: "Let's discuss your organization's challenges and objectives. Our senior team will respond within 24 hours with a value-focused evaluation.",
+      form: {
+        name: "Full Name",
+        namePlaceholder: "E.g. David Miller",
+        email: "Corporate Email",
+        emailPlaceholder: "david@company.com",
+        company: "Company / Organization",
+        companyPlaceholder: "E.g. Global Logistics Inc.",
+        service: "Area of Interest",
+        servicePlaceholder: "Select an option...",
+        message: "Describe your project scope",
+        messagePlaceholder: "What are your core objectives, estimated timelines, or key challenges?",
+        submit: "Request Strategic Consultation",
+        submitting: "Sending request...",
+        success: "Request sent successfully! A project director will reach out shortly."
+      },
+      direct: {
+        emailLabel: "Corporate Inquiries",
+        emailVal: "contact@3cats.com",
+        locationLabel: "B2B Delivery",
+        locationVal: "Regional & Global Deployments",
+        hoursLabel: "Response SLA",
+        hoursVal: "Under 24 business hours"
+      }
     },
     footer: {
-      title: "Ready to transform your business?",
-      desc: "Let's talk. One conversation could be the start of the project that will change your company forever.",
-      cta: "Schedule a call",
-      contactInfo: "Contact Us",
-      aboutUs: "About 3Cats",
-      hiring: "For Talent",
-      hiringLink: "Join our network",
-      rights: "All rights reserved."
+      title: "Empowering enterprises through high-performance technology delivery",
+      desc: "3Cats: Software Development & Project Delivery. Converting complex ambitions into measurable corporate realities.",
+      cta: "Schedule Executive Briefing",
+      contactInfo: "Corporate Inquiries",
+      aboutUs: "Service Pillars",
+      hiring: "For Professionals",
+      hiringLink: "Join Senior Network",
+      rights: "All rights reserved. Strict corporate confidentiality and data security guaranteed.",
+      links: [
+        { label: "Software Development", href: "#services" },
+        { label: "Project Management", href: "#methodology" },
+        { label: "Tech Consulting", href: "#services" },
+        { label: "Tailored Solutions", href: "#solutions" }
+      ]
     },
     register: {
-      pageTag: "3Cats Talent Network",
-      pageTitle: "Your next big project is waiting",
-      pageDesc: "Complete your profile and we'll reach out when we have a project aligned with your experience and goals.",
-      leftTitle: "Why join?",
+      pageTag: "3Cats Senior Talent Network",
+      pageTitle: "Join high-impact enterprise technology initiatives",
+      pageDesc: "We partner with senior engineers, solutions architects, and delivery leads to drive mission-critical corporate projects.",
+      leftTitle: "Why partner with 3Cats?",
       leftBenefits: [
-        "Access to real projects with companies transforming their industries",
-        "Full flexibility: define your modality, schedule, and project type",
-        "Community of top professionals in tech, design, and strategy",
-        "Support from a team that values your professional growth"
+        "Direct access to enterprise clients transforming their core industries",
+        "Disciplined agile methodologies, clear scopes, and respectful workflows",
+        "Competitive corporate-tier compensation with guaranteed on-time settlement",
+        "A peer community of senior, verified technical practitioners"
       ],
       fields: {
-        name: "Full name",
-        namePlaceholder: "E.g. John Smith",
-        email: "Email address",
-        emailPlaceholder: "john@example.com",
-        portfolio: "LinkedIn or Portfolio",
+        name: "Full Name",
+        namePlaceholder: "E.g. Robert Smith",
+        email: "Professional Email",
+        emailPlaceholder: "robert@domain.com",
+        portfolio: "LinkedIn or GitHub Profile",
         portfolioPlaceholder: "https://linkedin.com/in/your-profile",
-        specialization: "Area of specialization",
-        specializationPlaceholder: "Select an area...",
-        experience: "Years of experience",
-        experiencePlaceholder: "Select your experience...",
-        modality: "Preferred modality",
-        modalityPlaceholder: "How do you prefer to work?",
-        availability: "Availability",
-        availabilityPlaceholder: "How many hours can you dedicate?",
-        bio: "Tell us about yourself",
-        bioPlaceholder: "In 2-3 lines: what you do, where you excel, and what type of projects excite you."
+        specialization: "Core Discipline",
+        specializationPlaceholder: "Select your primary expertise...",
+        experience: "Years of Relevant Experience",
+        experiencePlaceholder: "Select experience bracket...",
+        modality: "Preferred Engagement",
+        modalityPlaceholder: "How do you prefer to collaborate?",
+        availability: "Weekly Availability",
+        availabilityPlaceholder: "How many hours can you commit?",
+        bio: "Executive Bio & Key Strengths",
+        bioPlaceholder: "Summarize in 2-3 lines your technical background, flagship achievements, and key stack."
       },
       specializations: [
-        { value: "fullstack", label: "Full Stack Development" },
-        { value: "frontend", label: "Frontend Development" },
-        { value: "backend", label: "Backend Development" },
-        { value: "mobile", label: "Mobile Development (iOS / Android)" },
-        { value: "ai_ml", label: "Artificial Intelligence / Machine Learning" },
-        { value: "data", label: "Data Engineering / Analytics" },
-        { value: "devops", label: "DevOps / Cloud / Infrastructure" },
-        { value: "design", label: "UI/UX Design" },
-        { value: "marketing", label: "Digital Marketing / Growth" },
-        { value: "consulting", label: "Business Consulting / Strategy" },
-        { value: "pm", label: "Project / Product Management" },
-        { value: "security", label: "Cybersecurity" },
-        { value: "other", label: "Other" }
+        { value: "fullstack", label: "Senior Full Stack Engineering" },
+        { value: "architecture", label: "Software & Cloud Architecture" },
+        { value: "backend", label: "Backend Engineering & Microservices" },
+        { value: "frontend", label: "Advanced Frontend (React / Next.js)" },
+        { value: "mobile", label: "Mobile Engineering (iOS / Android / Flutter)" },
+        { value: "ai_ml", label: "AI / Machine Learning Engineering" },
+        { value: "data", label: "Data Engineering & Analytics" },
+        { value: "devops", label: "DevOps / SecOps / Cloud Infrastructure" },
+        { value: "pm", label: "Technical Project Management (PMP / Agile)" },
+        { value: "qa", label: "QA Automation & Performance Engineering" },
+        { value: "other", label: "Other Specialized Domain" }
       ],
       experiences: [
-        { value: "0-1", label: "Less than 1 year" },
-        { value: "1-3", label: "1 - 3 years" },
         { value: "3-5", label: "3 - 5 years" },
-        { value: "5-8", label: "5 - 8 years" },
-        { value: "8+", label: "8+ years" }
+        { value: "5-8", label: "5 - 8 years (Senior)" },
+        { value: "8+", label: "8+ years (Lead / Staff)" },
+        { value: "12+", label: "12+ years (Principal / Director)" }
       ],
       modalities: [
         { value: "remote", label: "100% Remote" },
         { value: "hybrid", label: "Hybrid" },
-        { value: "onsite", label: "On-site" }
+        { value: "onsite", label: "On-site per milestone" }
       ],
       availabilities: [
-        { value: "full-time", label: "Full time (40h/week)" },
-        { value: "part-time", label: "Part time (20h/week)" },
-        { value: "freelance", label: "Freelance / Per project" },
-        { value: "hours", label: "Per hour (under 20h/week)" }
+        { value: "full-time", label: "Full Time (40h/week)" },
+        { value: "part-time", label: "Part Time (20h/week)" },
+        { value: "consulting", label: "Advisory / Hourly Consulting" },
+        { value: "sprint", label: "Sprint / Milestone-Based" }
       ],
-      submit: "Submit my profile",
-      successTitle: "Profile received!",
-      successDesc: "Thank you for wanting to be part of 3Cats. We'll review your profile and get in touch when we have a project that fits you perfectly.",
-      successCta: "Back to home"
+      submit: "Submit Application",
+      successTitle: "Profile Received Successfully!",
+      successDesc: "Our technical leadership team will evaluate your credentials and reach out for projects matching your seniority.",
+      successCta: "Return to Homepage"
     }
   }
 };
@@ -382,17 +612,28 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    const browserLang = navigator.language.toLowerCase();
-    if (browserLang.startsWith('en')) {
-      setLanguage('en');
-    } else {
+    try {
+      const stored = localStorage.getItem('3cats_lang') as Language;
+      if (stored === 'es' || stored === 'en') {
+        setLanguage(stored);
+      } else {
+        const browserLang = navigator.language?.toLowerCase() || '';
+        setLanguage(browserLang.startsWith('en') ? 'en' : 'es');
+      }
+    } catch {
       setLanguage('es');
     }
     setIsInitialized(true);
   }, []);
 
   const toggleLanguage = () => {
-    setLanguage((prev) => (prev === 'es' ? 'en' : 'es'));
+    setLanguage((prev) => {
+      const next = prev === 'es' ? 'en' : 'es';
+      try {
+        localStorage.setItem('3cats_lang', next);
+      } catch {}
+      return next;
+    });
   };
 
   if (!isInitialized) return null;
