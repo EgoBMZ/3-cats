@@ -62,7 +62,7 @@ export default function Footer() {
           {/* Brand Column with Pure Vector SVG Logo */}
           <div className="md:col-span-1" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <Link href="/" style={{ display: 'inline-block' }}>
-              <Logo3Cats variant="horizontal" height={38} showTagline={true} />
+              <Logo3Cats variant="horizontal" height={38} theme="dark" />
             </Link>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6, marginTop: '0.5rem' }}>
               {t.brand.slogan}. {t.brand.equation}.
