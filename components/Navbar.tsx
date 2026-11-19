@@ -26,10 +26,10 @@ export default function Navbar() {
   }, [menuOpen]);
 
   const navLinks = [
-    { href: '#services', label: t.nav.services },
-    { href: '#methodology', label: t.nav.methodology },
-    { href: '#solutions', label: t.nav.solutions },
-    { href: '#about', label: t.nav.about },
+    { href: '/#services', label: t.nav.services },
+    { href: '/#about', label: t.nav.about },
+    { href: '/#methodology', label: t.nav.methodology },
+    { href: '/#model', label: t.nav.model },
     { href: '/register', label: t.nav.talent },
   ];
 
@@ -42,10 +42,10 @@ export default function Navbar() {
           left: 0,
           right: 0,
           zIndex: 100,
-          backgroundColor: scrolled ? 'rgba(3, 7, 18, 0.95)' : 'rgba(3, 7, 18, 0.85)',
+          backgroundColor: scrolled ? 'rgba(var(--rgb-base), 0.95)' : 'rgba(var(--rgb-base), 0.85)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
-          borderBottom: `1px solid ${scrolled ? 'rgba(0, 194, 255, 0.28)' : 'rgba(56, 189, 248, 0.12)'}`,
+          borderBottom: `1px solid ${scrolled ? 'rgba(var(--rgb-cyan), 0.28)' : 'rgba(var(--rgb-steel), 0.12)'}`,
           transition: 'all 0.3s ease',
           boxShadow: scrolled ? '0 10px 30px -10px rgba(0, 0, 0, 0.7)' : 'none',
         }}
@@ -63,7 +63,7 @@ export default function Navbar() {
             </div>
             {/* Mobile Phone: Compact Horizontal Vector Logo */}
             <div className="sm:hidden">
-              <Logo3Cats variant="horizontal" height={32} theme="dark" />
+              <Logo3Cats variant="horizontal" height={28} theme="dark" />
             </div>
           </Link>
 
@@ -84,11 +84,11 @@ export default function Navbar() {
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = '#FFFFFF';
-                  e.currentTarget.style.textShadow = '0 0 10px rgba(0, 194, 255, 0.5)';
+                  
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.color = 'var(--text-secondary)';
-                  e.currentTarget.style.textShadow = 'none';
+                  
                 }}
               >
                 {link.label}
@@ -102,12 +102,13 @@ export default function Navbar() {
             <button
               onClick={toggleLanguage}
               aria-label="Cambiar idioma / Toggle language"
+              className="hidden sm:inline-flex"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.3rem',
-                background: 'rgba(8, 20, 39, 0.7)',
-                border: '1px solid rgba(56, 189, 248, 0.25)',
+                background: 'rgba(var(--rgb-surface), 0.7)',
+                border: '1px solid rgba(var(--rgb-steel), 0.25)',
                 borderRadius: '6px',
                 padding: '0.38rem 0.75rem',
                 color: 'var(--text-primary)',
@@ -126,20 +127,20 @@ export default function Navbar() {
             </button>
 
             {/* Primary CTA (Desktop & Tablet) */}
-            <a
-              href="#contact"
+            <Link
+              href="/#contact"
               className="btn-corp-primary hidden sm:inline-flex"
               style={{ padding: '0.55rem 1.35rem', fontSize: '0.88rem' }}
             >
               {t.nav.cta}
               <span style={{ marginLeft: '4px' }}>→</span>
-            </a>
+            </Link>
 
             {/* Mobile Hamburger Toggle: Strictly HIDDEN on Desktop (>= 1024px) */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="navbar-hamburger-btn"
-              aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+              aria-label={menuOpen ? t.nav.closeMenu : t.nav.openMenu}
             >
               <span
                 style={{
@@ -182,7 +183,7 @@ export default function Navbar() {
             inset: 0,
             width: '100vw',
             height: '100dvh',
-            backgroundColor: 'rgba(3, 7, 18, 0.98)',
+            backgroundColor: 'rgba(var(--rgb-base), 0.98)',
             backdropFilter: 'blur(28px)',
             WebkitBackdropFilter: 'blur(28px)',
             zIndex: 99999,
@@ -199,37 +200,18 @@ export default function Navbar() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              borderBottom: '1px solid rgba(56, 189, 248, 0.15)',
+              borderBottom: '1px solid rgba(var(--rgb-steel), 0.15)',
               flexShrink: 0,
             }}
           >
-            <Logo3Cats variant="horizontal" height={32} theme="dark" />
+            <Logo3Cats variant="horizontal" height={28} theme="dark" />
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <button
-                onClick={toggleLanguage}
-                style={{
-                  background: 'rgba(8, 20, 39, 0.8)',
-                  border: '1px solid rgba(56, 189, 248, 0.25)',
-                  borderRadius: '6px',
-                  padding: '0.35rem 0.65rem',
-                  color: 'var(--text-primary)',
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '0.8rem',
-                  fontWeight: 700,
-                  cursor: 'pointer',
-                }}
-              >
-                <span style={{ color: language === 'es' ? 'var(--accent-cyan)' : 'var(--text-muted)' }}>ES</span>
-                <span style={{ color: 'var(--text-muted)', opacity: 0.6, margin: '0 3px' }}>/</span>
-                <span style={{ color: language === 'en' ? 'var(--accent-cyan)' : 'var(--text-muted)' }}>EN</span>
-              </button>
-
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
               <button
                 onClick={() => setMenuOpen(false)}
                 style={{
-                  background: 'rgba(8, 20, 39, 0.8)',
-                  border: '1px solid rgba(56, 189, 248, 0.25)',
+                  background: 'rgba(var(--rgb-surface), 0.8)',
+                  border: '1px solid rgba(var(--rgb-steel), 0.25)',
                   borderRadius: '6px',
                   width: '42px',
                   height: '42px',
@@ -241,7 +223,7 @@ export default function Navbar() {
                   fontSize: '1.3rem',
                   fontWeight: 400,
                 }}
-                aria-label="Cerrar menú"
+                aria-label={t.nav.closeMenu}
               >
                 ✕
               </button>
@@ -270,7 +252,7 @@ export default function Navbar() {
                   marginBottom: '1rem',
                 }}
               >
-                Navegación
+                {t.nav.menu}
               </div>
 
               {navLinks.map((link) => (
@@ -299,16 +281,37 @@ export default function Navbar() {
 
             {/* Bottom Actions */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '2.5rem' }}>
-              <a
-                href="#contact"
+              <button
+                onClick={toggleLanguage}
+                aria-label="Cambiar idioma / Toggle language"
+                style={{
+                  alignSelf: 'center',
+                  background: 'rgba(var(--rgb-surface), 0.8)',
+                  border: '1px solid rgba(var(--rgb-steel), 0.25)',
+                  borderRadius: '8px',
+                  padding: '0.6rem 1.25rem',
+                  minHeight: '44px',
+                  color: 'var(--text-primary)',
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: '0.9rem',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                }}
+              >
+                <span style={{ color: language === 'es' ? 'var(--accent-cyan)' : 'var(--text-muted)' }}>Español</span>
+                <span style={{ color: 'var(--text-muted)', opacity: 0.6, margin: '0 8px' }}>/</span>
+                <span style={{ color: language === 'en' ? 'var(--accent-cyan)' : 'var(--text-muted)' }}>English</span>
+              </button>
+              <Link
+                href="/#contact"
                 className="btn-corp-primary w-full"
                 onClick={() => setMenuOpen(false)}
                 style={{ textAlign: 'center', padding: '1rem', fontSize: '1rem' }}
               >
                 {t.nav.cta} →
-              </a>
+              </Link>
               <div style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-muted)', letterSpacing: '0.14em' }}>
-                IDEAS | PROYECTOS | RESULTADOS
+                {t.brand.tagline}
               </div>
             </div>
           </div>

@@ -1,9 +1,7 @@
 "use client";
 
-import Link from 'next/link';
 import { useLanguage } from '../context/LanguageContext';
 import { useState, useEffect, useRef } from 'react';
-import Logo3Cats from '../components/Logo3Cats';
 
 // ── Intersection Observer Hook for Smooth Scroll Reveals ────────────
 function useReveal() {
@@ -74,8 +72,69 @@ const IconGear = () => (
   </svg>
 );
 
+const IconFlow = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="3" width="6" height="6" rx="1.5" />
+    <rect x="15" y="15" width="6" height="6" rx="1.5" />
+    <path d="M9 6h5a3 3 0 0 1 3 3v6" />
+  </svg>
+);
+
+const IconAI = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="5" y="5" width="14" height="14" rx="2" />
+    <path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" />
+    <circle cx="12" cy="12" r="2.5" />
+  </svg>
+);
+
+const IconData = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <ellipse cx="12" cy="5" rx="8" ry="3" />
+    <path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5" />
+    <path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" />
+  </svg>
+);
+
+const IconCloud = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M17.5 19H7a5 5 0 1 1 1.02-9.9A6 6 0 0 1 19.5 11a4 4 0 0 1-2 8z" />
+  </svg>
+);
+
+const IconCompass = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" />
+    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+  </svg>
+);
+
+const IconLayers = () => (
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+    <polyline points="2 17 12 22 22 17" />
+    <polyline points="2 12 12 17 22 12" />
+  </svg>
+);
+
+const IconCalendar = () => (
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="4" width="18" height="18" rx="2" />
+    <line x1="16" y1="2" x2="16" y2="6" />
+    <line x1="8" y1="2" x2="8" y2="6" />
+    <line x1="3" y1="10" x2="21" y2="10" />
+  </svg>
+);
+
+const IconShield = () => (
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    <polyline points="9 12 11 14 15 10" />
+  </svg>
+);
+
 const IconCheck = () => (
-  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '2px' }}>
     <polyline points="20 6 9 17 4 12" />
   </svg>
 );
@@ -84,9 +143,14 @@ export default function Home() {
   const { t } = useLanguage();
   const [activeStep, setActiveStep] = useState<number>(0);
   const [cockpitTab, setCockpitTab] = useState<'delivery' | 'architecture' | 'sla'>('delivery');
-  const [selectedArchLayer, setSelectedArchLayer] = useState<number>(1);
-  const [estimatorService, setEstimatorService] = useState<'software' | 'pm' | 'consulting' | 'custom'>('software');
-  const [estimatorSquad, setEstimatorSquad] = useState<'full' | 'lead' | 'advisory'>('full');
+  const [estimatorService, setEstimatorService] = useState<string>('automation');
+  const [estimatorSquad, setEstimatorSquad] = useState<string>('full');
+  const [expandedServices, setExpandedServices] = useState<string[]>([]);
+  const BULLETS_PREVIEW = 4;
+  const selectedService = t.services.items.find((s) => s.id === estimatorService) ?? t.services.items[0];
+  const selectedSquad = t.estimator.squads.find((s) => s.id === estimatorSquad) ?? t.estimator.squads[0];
+  const toggleService = (id: string) =>
+    setExpandedServices((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
 
   // Consultation Form State
   const [formData, setFormData] = useState({
@@ -108,6 +172,18 @@ export default function Home() {
   const governanceRef = useReveal();
   const contactRef = useReveal();
 
+  // Content renders after the language provider initializes, so the browser's
+  // native hash scroll (e.g. arriving from /register via "/#services") fires
+  // before the target exists. Scroll manually once mounted.
+  useEffect(() => {
+    const id = window.location.hash.slice(1);
+    if (!id) return;
+    const frame = requestAnimationFrame(() => {
+      document.getElementById(id)?.scrollIntoView();
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormStatus('loading');
@@ -121,6 +197,11 @@ export default function Home() {
       case 'users': return <IconUsers />;
       case 'chart': return <IconChart />;
       case 'rocket': return <IconRocket />;
+      case 'flow': return <IconFlow />;
+      case 'ai': return <IconAI />;
+      case 'data': return <IconData />;
+      case 'cloud': return <IconCloud />;
+      case 'compass': return <IconCompass />;
       default: return <IconCode />;
     }
   };
@@ -128,9 +209,11 @@ export default function Home() {
   const getMethodologyIcon = (index: number) => {
     switch (index) {
       case 0: return <IconTarget />;
-      case 1: return <IconUsers />;
-      case 2: return <IconGear />;
-      case 3: return <IconChart />;
+      case 1: return <IconLayers />;
+      case 2: return <IconCalendar />;
+      case 3: return <IconGear />;
+      case 4: return <IconShield />;
+      case 5: return <IconChart />;
       default: return <IconTarget />;
     }
   };
@@ -139,7 +222,7 @@ export default function Home() {
     <div className="tech-grid-bg" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
 
       {/* ── 1. HERO SECTION (Reference: demo1.jpeg & Mobile-First) ── */}
-      <section id="home" className="section" style={{ minHeight: '92vh', display: 'flex', alignItems: 'center', paddingTop: '2.5rem', paddingBottom: '3.5rem' }}>
+      <section id="home" className="section hero-section">
         <div ref={heroRef} className="reveal container">
           <div className="grid lg:grid-cols-12 items-center" style={{ gap: '3rem' }}>
 
@@ -163,8 +246,8 @@ export default function Home() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.5rem',
-                  backgroundColor: 'rgba(0, 194, 255, 0.08)',
-                  border: '1px solid rgba(0, 194, 255, 0.28)',
+                  backgroundColor: 'rgba(var(--rgb-cyan), 0.08)',
+                  border: '1px solid rgba(var(--rgb-cyan), 0.28)',
                   padding: '0.45rem 1.1rem',
                   borderRadius: '6px',
                   fontFamily: 'var(--font-heading)',
@@ -172,6 +255,8 @@ export default function Home() {
                   fontWeight: 700,
                   color: 'var(--accent-cyan)',
                   marginBottom: '1.25rem',
+                  maxWidth: '100%',
+                  lineHeight: 1.4,
                 }}
               >
                 <span>{t.hero.equation}</span>
@@ -197,16 +282,16 @@ export default function Home() {
               <div
                 className="w-full"
                 style={{
-                  backgroundColor: 'rgba(8, 20, 39, 0.85)',
-                  border: '1px solid rgba(56, 189, 248, 0.22)',
+                  backgroundColor: 'rgba(var(--rgb-surface), 0.85)',
+                  border: '1px solid rgba(var(--rgb-steel), 0.22)',
                   borderRadius: '12px',
-                  padding: '1.25rem 1rem',
+                  padding: '0.75rem',
                   backdropFilter: 'blur(16px)',
                   boxShadow: '0 12px 30px rgba(0, 0, 0, 0.5)',
                 }}
               >
-                <div className="grid grid-cols-2 md:grid-cols-4 items-stretch" style={{ gap: '0.75rem' }}>
-                  {t.hero.pillars.map((pillar: any, idx: number) => (
+                <div className="grid grid-cols-2 sm:grid-cols-3 items-stretch" style={{ gap: '1px', background: 'rgba(var(--rgb-steel), 0.12)', borderRadius: '8px', overflow: 'hidden' }}>
+                  {t.hero.pillars.map((pillar) => (
                     <div
                       key={pillar.id}
                       style={{
@@ -214,8 +299,8 @@ export default function Home() {
                         flexDirection: 'column',
                         alignItems: 'center',
                         textAlign: 'center',
-                        padding: '0.5rem 0.5rem',
-                        borderRight: idx < 3 ? '1px solid rgba(56, 189, 248, 0.15)' : 'none',
+                        padding: '0.85rem 0.5rem',
+                        background: 'var(--bg-surface)',
                       }}
                     >
                       <div
@@ -223,8 +308,8 @@ export default function Home() {
                           width: '40px',
                           height: '40px',
                           borderRadius: '8px',
-                          backgroundColor: 'rgba(0, 194, 255, 0.12)',
-                          border: '1px solid rgba(0, 194, 255, 0.3)',
+                          backgroundColor: 'rgba(var(--rgb-cyan), 0.12)',
+                          border: '1px solid rgba(var(--rgb-cyan), 0.3)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -234,7 +319,7 @@ export default function Home() {
                       >
                         {getPillarIcon(pillar.icon)}
                       </div>
-                      <h4 style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-white)', lineHeight: 1.3 }}>
+                      <h4 style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--text-white)', lineHeight: 1.3 }}>
                         {pillar.title}
                       </h4>
                     </div>
@@ -250,9 +335,9 @@ export default function Home() {
                 style={{
                   padding: 0,
                   borderRadius: '16px',
-                  backgroundColor: 'rgba(6, 15, 30, 0.95)',
-                  borderColor: 'rgba(0, 194, 255, 0.35)',
-                  boxShadow: '0 25px 60px -10px rgba(0, 102, 255, 0.3), 0 0 35px rgba(0, 194, 255, 0.15)',
+                  backgroundColor: 'rgba(var(--rgb-surface), 0.95)',
+                  borderColor: 'rgba(var(--rgb-cyan), 0.35)',
+                  boxShadow: '0 25px 60px -10px rgba(var(--rgb-blue), 0.3), 0 0 35px rgba(var(--rgb-cyan), 0.15)',
                   overflow: 'hidden',
                 }}
               >
@@ -260,35 +345,37 @@ export default function Home() {
                 <div
                   style={{
                     padding: '0.9rem 1.25rem',
-                    borderBottom: '1px solid rgba(56, 189, 248, 0.18)',
+                    borderBottom: '1px solid rgba(var(--rgb-steel), 0.18)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    backgroundColor: 'rgba(3, 7, 18, 0.8)',
+                    flexWrap: 'wrap',
+                    gap: '0.5rem',
+                    backgroundColor: 'rgba(var(--rgb-base), 0.8)',
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', minWidth: 0 }}>
                     <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#EF4444' }} />
                     <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#F59E0B' }} />
-                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10B981' }} />
+                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: 'var(--success)' }} />
                     <span style={{ fontFamily: 'var(--font-heading)', fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-muted)', marginLeft: '0.5rem' }}>
-                      3CATS DELIVERY CONSOLE
+                      {t.cockpit.title}
                     </span>
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.72rem', color: '#10B981', fontWeight: 600 }}>
-                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#10B981', display: 'inline-block' }} />
-                    <span>SLA 99.98%</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.72rem', color: 'var(--success)', fontWeight: 600 }}>
+                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--success)', display: 'inline-block' }} />
+                    <span>{t.cockpit.status}</span>
                   </div>
                 </div>
 
                 {/* Cockpit Interactive Tabs */}
-                <div style={{ display: 'flex', borderBottom: '1px solid rgba(56, 189, 248, 0.12)', background: 'rgba(8, 20, 39, 0.6)' }}>
+                <div style={{ display: 'flex', borderBottom: '1px solid rgba(var(--rgb-steel), 0.12)', background: 'rgba(var(--rgb-surface), 0.6)' }}>
                   <button
                     onClick={() => setCockpitTab('delivery')}
                     style={{
                       flex: 1,
                       padding: '0.65rem 0.5rem',
-                      background: cockpitTab === 'delivery' ? 'rgba(0, 194, 255, 0.12)' : 'transparent',
+                      background: cockpitTab === 'delivery' ? 'rgba(var(--rgb-cyan), 0.12)' : 'transparent',
                       border: 'none',
                       borderBottom: cockpitTab === 'delivery' ? '2px solid var(--accent-cyan)' : '2px solid transparent',
                       color: cockpitTab === 'delivery' ? 'var(--accent-cyan)' : 'var(--text-secondary)',
@@ -298,14 +385,14 @@ export default function Home() {
                       fontFamily: 'var(--font-heading)',
                     }}
                   >
-                    Sprint Tracker
+                    {t.cockpit.tabs.delivery}
                   </button>
                   <button
                     onClick={() => setCockpitTab('architecture')}
                     style={{
                       flex: 1,
                       padding: '0.65rem 0.5rem',
-                      background: cockpitTab === 'architecture' ? 'rgba(0, 194, 255, 0.12)' : 'transparent',
+                      background: cockpitTab === 'architecture' ? 'rgba(var(--rgb-cyan), 0.12)' : 'transparent',
                       border: 'none',
                       borderBottom: cockpitTab === 'architecture' ? '2px solid var(--accent-cyan)' : '2px solid transparent',
                       color: cockpitTab === 'architecture' ? 'var(--accent-cyan)' : 'var(--text-secondary)',
@@ -315,14 +402,14 @@ export default function Home() {
                       fontFamily: 'var(--font-heading)',
                     }}
                   >
-                    Cloud Gateway
+                    {t.cockpit.tabs.architecture}
                   </button>
                   <button
                     onClick={() => setCockpitTab('sla')}
                     style={{
                       flex: 1,
                       padding: '0.65rem 0.5rem',
-                      background: cockpitTab === 'sla' ? 'rgba(0, 194, 255, 0.12)' : 'transparent',
+                      background: cockpitTab === 'sla' ? 'rgba(var(--rgb-cyan), 0.12)' : 'transparent',
                       border: 'none',
                       borderBottom: cockpitTab === 'sla' ? '2px solid var(--accent-cyan)' : '2px solid transparent',
                       color: cockpitTab === 'sla' ? 'var(--accent-cyan)' : 'var(--text-secondary)',
@@ -332,45 +419,42 @@ export default function Home() {
                       fontFamily: 'var(--font-heading)',
                     }}
                   >
-                    QA &amp; Governance
+                    {t.cockpit.tabs.governance}
                   </button>
                 </div>
 
                 {/* Cockpit Interactive Content Body */}
-                <div style={{ padding: '1.5rem', minHeight: '260px' }}>
+                <div style={{ padding: 'clamp(1.1rem, 4vw, 1.5rem)', minHeight: '240px' }}>
                   {cockpitTab === 'delivery' && (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                      <div className="flex justify-between items-center">
+                      <div className="flex justify-between items-start" style={{ gap: '0.75rem' }}>
                         <div>
-                          <div style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-muted)' }}>Sprint Activo</div>
-                          <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-white)' }}>Sprint 14: Core API &amp; Auth</div>
+                          <div style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-muted)' }}>{t.cockpit.sprintLabel}</div>
+                          <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-white)', lineHeight: 1.35 }}>{t.cockpit.sprintName}</div>
                         </div>
-                        <span style={{ fontSize: '0.75rem', padding: '0.2rem 0.6rem', borderRadius: '4px', backgroundColor: 'rgba(16, 185, 129, 0.15)', color: '#10B981', fontWeight: 700, border: '1px solid rgba(16, 185, 129, 0.3)' }}>
-                          En Plazo (On-Track)
+                        <span style={{ flexShrink: 0, fontSize: '0.75rem', padding: '0.2rem 0.6rem', borderRadius: '4px', backgroundColor: 'rgba(var(--rgb-success), 0.15)', color: 'var(--success)', fontWeight: 700, border: '1px solid rgba(var(--rgb-success), 0.3)' }}>
+                          {t.cockpit.onTrack}
                         </span>
                       </div>
 
-                      {/* Progress Bar */}
                       <div>
-                        <div className="flex justify-between text-xs mb-1" style={{ color: 'var(--text-secondary)' }}>
-                          <span>Avance de Entregables</span>
-                          <span style={{ color: 'var(--accent-cyan)', fontWeight: 700 }}>88% (42/48 Hitos)</span>
+                        <div className="flex justify-between mb-2" style={{ color: 'var(--text-secondary)', fontSize: '0.78rem', gap: '0.5rem' }}>
+                          <span>{t.cockpit.progressLabel}</span>
+                          <span style={{ color: 'var(--accent-cyan)', fontWeight: 700 }}>{t.cockpit.progressVal}</span>
                         </div>
                         <div style={{ height: '8px', backgroundColor: 'rgba(255, 255, 255, 0.08)', borderRadius: '4px', overflow: 'hidden' }}>
-                          <div style={{ width: '88%', height: '100%', background: 'linear-gradient(90deg, #00C2FF, #0066FF)', borderRadius: '4px' }} />
+                          <div style={{ width: '88%', height: '100%', background: 'linear-gradient(90deg, var(--brand-cyan), var(--brand-cyan-bright))', borderRadius: '4px' }} />
                         </div>
                       </div>
 
-                      {/* Live Deliverables Checklist */}
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.82rem' }}>
-                        <div className="flex items-center gap-2" style={{ color: '#E2E8F0' }}>
-                          <span style={{ color: '#10B981' }}>✓</span> Microservicios autenticación mTLS completado
-                        </div>
-                        <div className="flex items-center gap-2" style={{ color: '#E2E8F0' }}>
-                          <span style={{ color: '#10B981' }}>✓</span> Pipeline CI/CD automatizado en staging
-                        </div>
-                        <div className="flex items-center gap-2" style={{ color: '#E2E8F0' }}>
-                          <span style={{ color: 'var(--accent-cyan)' }}>●</span> Pruebas de carga 10,000 req/sec en curso
+                        {t.cockpit.tasksDone.map((task: string) => (
+                          <div key={task} className="flex items-start gap-2" style={{ color: 'var(--brand-silver)' }}>
+                            <span style={{ color: 'var(--success)' }}>✓</span> {task}
+                          </div>
+                        ))}
+                        <div className="flex items-start gap-2" style={{ color: 'var(--brand-silver)' }}>
+                          <span style={{ color: 'var(--accent-cyan)' }}>●</span> {t.cockpit.taskPending}
                         </div>
                       </div>
                     </div>
@@ -378,42 +462,26 @@ export default function Home() {
 
                   {cockpitTab === 'architecture' && (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Topología Cloud Enterprise</div>
+                      <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>{t.cockpit.archLabel}</div>
                       <div className="grid grid-cols-2" style={{ gap: '0.65rem' }}>
-                        <div style={{ padding: '0.75rem', backgroundColor: 'rgba(8, 20, 39, 0.8)', borderRadius: '8px', border: '1px solid rgba(56, 189, 248, 0.2)' }}>
-                          <div style={{ fontSize: '0.72rem', color: 'var(--accent-cyan)', fontWeight: 700 }}>EDGE GATEWAY</div>
-                          <div style={{ fontSize: '0.85rem', color: '#FFFFFF', fontWeight: 600 }}>Cloudflare / AWS CloudFront</div>
-                        </div>
-                        <div style={{ padding: '0.75rem', backgroundColor: 'rgba(8, 20, 39, 0.8)', borderRadius: '8px', border: '1px solid rgba(56, 189, 248, 0.2)' }}>
-                          <div style={{ fontSize: '0.72rem', color: 'var(--accent-cyan)', fontWeight: 700 }}>ORCHESTRATION</div>
-                          <div style={{ fontSize: '0.85rem', color: '#FFFFFF', fontWeight: 600 }}>Kubernetes / Docker EKS</div>
-                        </div>
-                        <div style={{ padding: '0.75rem', backgroundColor: 'rgba(8, 20, 39, 0.8)', borderRadius: '8px', border: '1px solid rgba(56, 189, 248, 0.2)' }}>
-                          <div style={{ fontSize: '0.72rem', color: 'var(--accent-cyan)', fontWeight: 700 }}>PERSISTENCIA</div>
-                          <div style={{ fontSize: '0.85rem', color: '#FFFFFF', fontWeight: 600 }}>PostgreSQL + Redis Cache</div>
-                        </div>
-                        <div style={{ padding: '0.75rem', backgroundColor: 'rgba(8, 20, 39, 0.8)', borderRadius: '8px', border: '1px solid rgba(56, 189, 248, 0.2)' }}>
-                          <div style={{ fontSize: '0.72rem', color: 'var(--accent-cyan)', fontWeight: 700 }}>OBSERVABILITY</div>
-                          <div style={{ fontSize: '0.85rem', color: '#FFFFFF', fontWeight: 600 }}>OpenTelemetry + Datadog</div>
-                        </div>
+                        {t.cockpit.arch.map((item) => (
+                          <div key={item.k} style={{ padding: '0.75rem', backgroundColor: 'rgba(var(--rgb-surface), 0.8)', borderRadius: '8px', border: '1px solid rgba(var(--rgb-steel), 0.2)' }}>
+                            <div style={{ fontSize: '0.68rem', color: 'var(--accent-cyan)', fontWeight: 700, letterSpacing: '0.04em' }}>{item.k}</div>
+                            <div style={{ fontSize: '0.84rem', color: '#FFFFFF', fontWeight: 600, lineHeight: 1.35 }}>{item.v}</div>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   )}
 
                   {cockpitTab === 'sla' && (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
-                      <div className="flex justify-between items-center" style={{ padding: '0.5rem 0', borderBottom: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                        <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Uptime Garantizado</span>
-                        <span style={{ fontSize: '0.9rem', color: 'var(--accent-cyan)', fontWeight: 700 }}>99.9% Mensual</span>
-                      </div>
-                      <div className="flex justify-between items-center" style={{ padding: '0.5rem 0', borderBottom: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                        <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Cobertura Pruebas QA</span>
-                        <span style={{ fontSize: '0.9rem', color: '#10B981', fontWeight: 700 }}>96.4% Cobertura</span>
-                      </div>
-                      <div className="flex justify-between items-center" style={{ padding: '0.5rem 0', borderBottom: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                        <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Tiempo de Respuesta Crítico</span>
-                        <span style={{ fontSize: '0.9rem', color: '#FFFFFF', fontWeight: 700 }}>&lt; 30 Minutos</span>
-                      </div>
+                      {t.cockpit.governance.map((row, i) => (
+                        <div key={row.k} className="flex justify-between items-center" style={{ padding: '0.5rem 0', borderBottom: '1px solid rgba(255, 255, 255, 0.06)', gap: '0.75rem' }}>
+                          <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{row.k}</span>
+                          <span style={{ fontSize: '0.88rem', color: i === 0 ? 'var(--accent-cyan)' : i === 1 ? 'var(--success)' : '#FFFFFF', fontWeight: 700, textAlign: 'right' }}>{row.v}</span>
+                        </div>
+                      ))}
                     </div>
                   )}
                 </div>
@@ -422,11 +490,13 @@ export default function Home() {
                 <div
                   style={{
                     padding: '1rem 1.25rem',
-                    backgroundColor: 'rgba(3, 7, 18, 0.95)',
-                    borderTop: '1px solid rgba(56, 189, 248, 0.2)',
+                    backgroundColor: 'rgba(var(--rgb-base), 0.95)',
+                    borderTop: '1px solid rgba(var(--rgb-steel), 0.2)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
+                    flexWrap: 'wrap',
+                    gap: '0.25rem 0.75rem',
                   }}
                 >
                   <div style={{ fontSize: '0.72rem', letterSpacing: '0.12em', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: 700 }}>
@@ -444,7 +514,7 @@ export default function Home() {
       </section>
 
       {/* ── 2. STRATEGIC FORMULA SECTION ──────────────────────────── */}
-      <section id="about" className="section" style={{ backgroundColor: 'var(--bg-surface)', borderTop: '1px solid rgba(56, 189, 248, 0.12)', borderBottom: '1px solid rgba(56, 189, 248, 0.12)' }}>
+      <section id="about" className="section" style={{ backgroundColor: 'var(--bg-surface)', borderTop: '1px solid rgba(var(--rgb-steel), 0.12)', borderBottom: '1px solid rgba(var(--rgb-steel), 0.12)' }}>
         <div ref={formulaRef} className="reveal container">
           
           <div className="text-center" style={{ maxWidth: '820px', margin: '0 auto 3.5rem auto' }}>
@@ -461,7 +531,7 @@ export default function Home() {
 
           {/* 4 Strategic Value Pillars */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: '1.5rem' }}>
-            {t.equationSection.items.map((item: any, i: number) => (
+            {t.equationSection.items.map((item, i) => (
               <div
                 key={i}
                 className="corp-card"
@@ -470,7 +540,7 @@ export default function Home() {
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  backgroundColor: 'rgba(8, 20, 39, 0.75)',
+                  backgroundColor: 'rgba(var(--rgb-surface), 0.75)',
                 }}
               >
                 <div>
@@ -520,80 +590,76 @@ export default function Home() {
             className="corp-card"
             style={{
               padding: 'clamp(1.5rem, 4vw, 3rem)',
-              backgroundColor: 'rgba(6, 15, 30, 0.9)',
-              borderColor: 'rgba(0, 194, 255, 0.3)',
+              backgroundColor: 'rgba(var(--rgb-surface), 0.9)',
+              borderColor: 'rgba(var(--rgb-cyan), 0.3)',
               marginBottom: '3rem',
             }}
           >
             {/* Desktop Pipeline Laser Track */}
-            <div className="hidden md:block" style={{ position: 'relative', marginBottom: '2rem' }}>
+            <div className="hidden lg:block" style={{ position: 'relative', marginBottom: '2rem' }}>
               <div
                 style={{
                   position: 'absolute',
-                  top: '38px',
-                  left: '12%',
-                  right: '12%',
+                  top: '32px',
+                  left: '8%',
+                  right: '8%',
                   height: '2px',
-                  backgroundColor: 'rgba(0, 194, 255, 0.45)',
-                  boxShadow: '0 0 12px rgba(0, 194, 255, 0.6)',
+                  backgroundColor: 'rgba(var(--rgb-cyan), 0.45)',
+                  boxShadow: '0 0 12px rgba(var(--rgb-cyan), 0.6)',
                   zIndex: 0,
                 }}
               />
             </div>
 
             {/* Stepper Nodes */}
-            <div className="grid grid-cols-1 md:grid-cols-4 items-start" style={{ gap: '2rem', position: 'relative', zIndex: 1 }}>
-              {t.methodology.nodes.map((node: any, idx: number) => {
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 items-start method-grid">
+              {t.methodology.nodes.map((node, idx) => {
                 const isActive = activeStep === idx;
                 return (
                   <div
                     key={node.num}
                     onClick={() => setActiveStep(idx)}
+                    className="method-node"
                     style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      textAlign: 'center',
                       cursor: 'pointer',
                       transition: 'all 0.25s ease',
-                      padding: '1rem',
                       borderRadius: '12px',
-                      backgroundColor: isActive ? 'rgba(0, 194, 255, 0.08)' : 'transparent',
-                      border: isActive ? '1px solid rgba(0, 194, 255, 0.35)' : '1px solid transparent',
+                      backgroundColor: isActive ? 'rgba(var(--rgb-cyan), 0.08)' : 'transparent',
+                      border: isActive ? '1px solid rgba(var(--rgb-cyan), 0.35)' : '1px solid transparent',
                     }}
                   >
                     {/* Circular Icon with Glow */}
                     <div
+                      className="method-icon"
                       style={{
-                        width: '74px',
-                        height: '74px',
                         borderRadius: '50%',
-                        backgroundColor: isActive ? 'rgba(0, 194, 255, 0.25)' : 'rgba(8, 20, 39, 0.95)',
-                        border: `2px solid ${isActive ? 'var(--accent-cyan)' : 'rgba(56, 189, 248, 0.3)'}`,
-                        boxShadow: isActive ? '0 0 25px rgba(0, 194, 255, 0.5)' : '0 4px 15px rgba(0, 0, 0, 0.4)',
+                        backgroundColor: isActive ? 'rgba(var(--rgb-cyan), 0.25)' : 'rgba(var(--rgb-surface), 0.95)',
+                        border: `2px solid ${isActive ? 'var(--accent-cyan)' : 'rgba(var(--rgb-steel), 0.3)'}`,
+                        boxShadow: isActive ? '0 0 25px rgba(var(--rgb-cyan), 0.5)' : '0 4px 15px rgba(0, 0, 0, 0.4)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         color: isActive ? '#FFFFFF' : 'var(--accent-cyan)',
-                        marginBottom: '1.25rem',
                         transition: 'all 0.25s ease',
                       }}
                     >
                       {getMethodologyIcon(idx)}
                     </div>
+                    <div>
 
                     <div style={{ fontSize: '0.72rem', fontWeight: 800, letterSpacing: '0.14em', color: 'var(--accent-cyan)', marginBottom: '0.25rem' }}>
-                      FASE {node.num}
+                      {t.methodology.phase} {node.num}
                     </div>
-                    <h3 style={{ fontSize: '1.08rem', fontWeight: 800, color: 'var(--text-white)', letterSpacing: '0.03em', marginBottom: '0.35rem' }}>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--text-white)', letterSpacing: '0.03em', marginBottom: '0.35rem' }}>
                       {node.title}
                     </h3>
-                    <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 500, lineHeight: 1.45, marginBottom: '0.75rem' }}>
+                    <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 500, lineHeight: 1.45, marginBottom: '0.5rem' }}>
                       {node.subtitle}
                     </p>
 
                     <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
                       {node.detail}
+                    </div>
                     </div>
                   </div>
                 );
@@ -602,11 +668,12 @@ export default function Home() {
 
             {/* Bottom Sub-motto Strip from demo2.jpeg */}
             <div
-              className="flex flex-col sm:flex-row justify-between items-center text-xs"
+              className="flex flex-col sm:flex-row justify-between items-center text-center"
               style={{
-                marginTop: '3rem',
+                fontSize: '0.72rem',
+                marginTop: '2.5rem',
                 paddingTop: '1.5rem',
-                borderTop: '1px solid rgba(56, 189, 248, 0.15)',
+                borderTop: '1px solid rgba(var(--rgb-steel), 0.15)',
                 color: 'var(--text-secondary)',
                 letterSpacing: '0.12em',
                 fontWeight: 700,
@@ -628,7 +695,7 @@ export default function Home() {
       </section>
 
       {/* ── 4. CORPORATE B2B SERVICES ─────────────────────────────── */}
-      <section id="services" className="section" style={{ backgroundColor: 'var(--bg-surface)', borderTop: '1px solid rgba(56, 189, 248, 0.12)' }}>
+      <section id="services" className="section" style={{ backgroundColor: 'var(--bg-surface)', borderTop: '1px solid rgba(var(--rgb-steel), 0.12)' }}>
         <div ref={servicesRef} className="reveal container">
 
           <div className="text-center" style={{ maxWidth: '820px', margin: '0 auto 3.5rem auto' }}>
@@ -639,12 +706,16 @@ export default function Home() {
             <p className="text-lead">{t.services.desc}</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: '2rem' }}>
-            {t.services.items.map((srv: any, idx: number) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style={{ gap: '1.5rem' }}>
+            {t.services.items.map((srv, idx) => {
+              const expanded = expandedServices.includes(srv.id);
+              const bullets: string[] = expanded ? srv.bullets : srv.bullets.slice(0, BULLETS_PREVIEW);
+              const hiddenCount = srv.bullets.length - BULLETS_PREVIEW;
+              return (
               <div
                 key={srv.id}
                 className="corp-card flex flex-col justify-between"
-                style={{ padding: 'clamp(1.75rem, 3.5vw, 2.5rem)' }}
+                style={{ padding: 'clamp(1.5rem, 3vw, 2rem)' }}
               >
                 <div>
                   <div className="flex justify-between items-center mb-4">
@@ -655,10 +726,10 @@ export default function Home() {
                         textTransform: 'uppercase',
                         letterSpacing: '0.08em',
                         color: 'var(--accent-cyan)',
-                        backgroundColor: 'rgba(0, 194, 255, 0.1)',
+                        backgroundColor: 'rgba(var(--rgb-cyan), 0.1)',
                         padding: '0.3rem 0.8rem',
                         borderRadius: '4px',
-                        border: '1px solid rgba(0, 194, 255, 0.25)',
+                        border: '1px solid rgba(var(--rgb-cyan), 0.25)',
                       }}
                     >
                       {srv.badge}
@@ -668,25 +739,39 @@ export default function Home() {
                     </span>
                   </div>
 
-                  <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-white)', marginBottom: '1rem', lineHeight: 1.25 }}>
+                  <h3 style={{ fontSize: 'clamp(1.15rem, 2.2vw, 1.3rem)', fontWeight: 800, color: 'var(--text-white)', marginBottom: '0.6rem', lineHeight: 1.25 }}>
                     {srv.title}
                   </h3>
 
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>
+                  <p style={{ fontFamily: 'var(--font-heading)', color: 'var(--accent-cyan-light)', fontSize: '0.92rem', fontWeight: 600, lineHeight: 1.45, marginBottom: '0.85rem' }}>
+                    {srv.focus}
+                  </p>
+
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.65, marginBottom: '1.25rem' }}>
                     {srv.desc}
                   </p>
 
                   <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-                    {srv.bullets.map((b: string, bi: number) => (
-                      <li key={bi} style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', fontSize: '0.88rem', color: 'var(--text-primary)' }}>
+                    {bullets.map((b: string, bi: number) => (
+                      <li key={bi} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', fontSize: '0.88rem', color: 'var(--text-primary)', lineHeight: 1.45 }}>
                         <IconCheck />
                         <span>{b}</span>
                       </li>
                     ))}
                   </ul>
+                  {hiddenCount > 0 && (
+                    <button
+                      type="button"
+                      onClick={() => toggleService(srv.id)}
+                      aria-expanded={expanded}
+                      style={{ marginTop: '0.75rem', background: 'none', border: 'none', padding: '0.35rem 0', color: 'var(--text-secondary)', fontSize: '0.82rem', fontWeight: 600, cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: '3px' }}
+                    >
+                      {expanded ? t.services.less : `${t.services.more} (+${hiddenCount})`}
+                    </button>
+                  )}
                 </div>
 
-                <div style={{ marginTop: '2rem', paddingTop: '1.25rem', borderTop: '1px solid rgba(255, 255, 255, 0.06)' }}>
+                <div style={{ marginTop: '1.5rem', paddingTop: '1.1rem', borderTop: '1px solid rgba(255, 255, 255, 0.06)' }}>
                   <a
                     href="#contact"
                     style={{
@@ -699,36 +784,35 @@ export default function Home() {
                       fontFamily: 'var(--font-heading)',
                     }}
                   >
-                    Consultar disponibilidad de squad <span>→</span>
+                    {t.services.cta} <span>→</span>
                   </a>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
 
         </div>
       </section>
 
       {/* ── 5. ENTERPRISE PROJECT SCOPE & SQUAD ESTIMATOR ─────────── */}
-      <section className="section" style={{ borderTop: '1px solid rgba(56, 189, 248, 0.12)' }}>
+      <section className="section" style={{ borderTop: '1px solid rgba(var(--rgb-steel), 0.12)' }}>
         <div ref={estimatorRef} className="reveal container">
           
           <div className="text-center" style={{ maxWidth: '820px', margin: '0 auto 3rem auto' }}>
             <div className="corp-badge mb-4" style={{ margin: '0 auto 1.25rem auto' }}>
-              <span>CONFIGURADOR ESTRATÉGICO</span>
+              <span>{t.estimator.tag}</span>
             </div>
-            <h2 className="heading-lg mb-4">Planifica el Alcance de tu Proyecto</h2>
-            <p className="text-lead">
-              Selecciona el tipo de solución y topología de equipo para proyectar tiempos de delivery y modelo de gobernanza.
-            </p>
+            <h2 className="heading-lg mb-4">{t.estimator.title}</h2>
+            <p className="text-lead">{t.estimator.desc}</p>
           </div>
 
           <div
             className="corp-card"
             style={{
               padding: 'clamp(1.5rem, 3.5vw, 2.75rem)',
-              backgroundColor: 'rgba(6, 15, 30, 0.95)',
-              borderColor: 'rgba(0, 194, 255, 0.3)',
+              backgroundColor: 'rgba(var(--rgb-surface), 0.95)',
+              borderColor: 'rgba(var(--rgb-cyan), 0.3)',
             }}
           >
             <div className="grid lg:grid-cols-12" style={{ gap: '2.5rem', alignItems: 'center' }}>
@@ -738,24 +822,22 @@ export default function Home() {
                 {/* 1. Service Type Selector */}
                 <div>
                   <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-white)', marginBottom: '0.75rem' }}>
-                    1. Categoría de Proyecto
+                    {t.estimator.step1}
                   </label>
-                  <div className="grid grid-cols-2 sm:grid-cols-4" style={{ gap: '0.65rem' }}>
-                    {[
-                      { id: 'software', label: 'Software Enterprise' },
-                      { id: 'pm', label: 'PMO & Gobernanza' },
-                      { id: 'consulting', label: 'Consultoría Cloud' },
-                      { id: 'custom', label: 'ERP / IA a Medida' },
-                    ].map((btn) => (
+                  <div className="grid grid-cols-2 sm:grid-cols-3" style={{ gap: '0.65rem' }}>
+                    {t.hero.pillars.map((p) => ({ id: p.id, label: p.title })).map((btn: { id: string; label: string }) => (
                       <button
                         key={btn.id}
                         type="button"
-                        onClick={() => setEstimatorService(btn.id as any)}
+                        aria-pressed={estimatorService === btn.id}
+                        onClick={() => setEstimatorService(btn.id)}
                         style={{
+                          minHeight: '48px',
+                          lineHeight: 1.3,
                           padding: '0.75rem 0.5rem',
                           borderRadius: '8px',
-                          border: `1px solid ${estimatorService === btn.id ? 'var(--accent-cyan)' : 'rgba(56, 189, 248, 0.2)'}`,
-                          backgroundColor: estimatorService === btn.id ? 'rgba(0, 194, 255, 0.15)' : 'rgba(8, 20, 39, 0.6)',
+                          border: `1px solid ${estimatorService === btn.id ? 'var(--accent-cyan)' : 'rgba(var(--rgb-steel), 0.2)'}`,
+                          backgroundColor: estimatorService === btn.id ? 'rgba(var(--rgb-cyan), 0.15)' : 'rgba(var(--rgb-surface), 0.6)',
                           color: estimatorService === btn.id ? '#FFFFFF' : 'var(--text-secondary)',
                           fontSize: '0.8rem',
                           fontWeight: 700,
@@ -773,22 +855,22 @@ export default function Home() {
                 {/* 2. Squad Topology Selector */}
                 <div>
                   <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-white)', marginBottom: '0.75rem' }}>
-                    2. Topología de Equipo Requerida
+                    {t.estimator.step2}
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: '0.75rem' }}>
-                    {[
-                      { id: 'full', title: 'Squad Completo', desc: '1 Tech Lead + 3 Devs Senior + 1 QA' },
-                      { id: 'lead', title: 'Núcleo Técnico', desc: '1 Tech Lead + 2 Devs Senior' },
-                      { id: 'advisory', title: 'Dirección PMO', desc: 'Project Manager PMP + Arquitecto' },
-                    ].map((squad) => (
-                      <div
+                    {t.estimator.squads.map((squad) => (
+                      <button
+                        type="button"
                         key={squad.id}
-                        onClick={() => setEstimatorSquad(squad.id as any)}
+                        aria-pressed={estimatorSquad === squad.id}
+                        onClick={() => setEstimatorSquad(squad.id)}
                         style={{
+                          textAlign: 'left',
+                          fontFamily: 'inherit',
                           padding: '1rem',
                           borderRadius: '8px',
-                          border: `1px solid ${estimatorSquad === squad.id ? 'var(--accent-cyan)' : 'rgba(56, 189, 248, 0.2)'}`,
-                          backgroundColor: estimatorSquad === squad.id ? 'rgba(0, 194, 255, 0.12)' : 'rgba(8, 20, 39, 0.6)',
+                          border: `1px solid ${estimatorSquad === squad.id ? 'var(--accent-cyan)' : 'rgba(var(--rgb-steel), 0.2)'}`,
+                          backgroundColor: estimatorSquad === squad.id ? 'rgba(var(--rgb-cyan), 0.12)' : 'rgba(var(--rgb-surface), 0.6)',
                           cursor: 'pointer',
                           transition: 'all 0.2s ease',
                         }}
@@ -799,7 +881,7 @@ export default function Home() {
                         <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: 1.4 }}>
                           {squad.desc}
                         </div>
-                      </div>
+                      </button>
                     ))}
                   </div>
                 </div>
@@ -809,36 +891,30 @@ export default function Home() {
               <div className="lg:col-span-5">
                 <div
                   style={{
-                    padding: '2rem',
+                    padding: 'clamp(1.25rem, 4vw, 2rem)',
                     borderRadius: '12px',
-                    backgroundColor: 'rgba(3, 7, 18, 0.9)',
-                    border: '1px solid rgba(0, 194, 255, 0.3)',
+                    backgroundColor: 'rgba(var(--rgb-base), 0.9)',
+                    border: '1px solid rgba(var(--rgb-cyan), 0.3)',
                     boxShadow: '0 15px 35px rgba(0, 0, 0, 0.5)',
                   }}
                 >
                   <div style={{ fontSize: '0.75rem', fontWeight: 800, letterSpacing: '0.12em', color: 'var(--accent-cyan)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
-                    Proyección Estratégica
+                    {t.estimator.outputLabel}
                   </div>
-                  <h4 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF', marginBottom: '1.25rem' }}>
-                    {estimatorService === 'software' && 'Desarrollo Cloud-Native Enterprise'}
-                    {estimatorService === 'pm' && 'Gobierno de Proyectos & Metodología'}
-                    {estimatorService === 'consulting' && 'Modernización de Arquitectura'}
-                    {estimatorService === 'custom' && 'Sistema a la Medida con IA'}
+                  <h4 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#FFFFFF', marginBottom: '0.5rem', lineHeight: 1.3 }}>
+                    {selectedService.title}
                   </h4>
+                  <p style={{ fontSize: '0.88rem', color: 'var(--accent-cyan-light)', fontWeight: 600, marginBottom: '1.25rem', lineHeight: 1.45 }}>
+                    {selectedService.focus}
+                  </p>
 
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.85rem', marginBottom: '1.5rem' }}>
-                    <div className="flex justify-between" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '0.4rem' }}>
-                      <span style={{ color: 'var(--text-secondary)' }}>Cadencia de Entrega</span>
-                      <span style={{ color: '#FFFFFF', fontWeight: 700 }}>Sprints Quincenales (2 semanas)</span>
-                    </div>
-                    <div className="flex justify-between" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '0.4rem' }}>
-                      <span style={{ color: 'var(--text-secondary)' }}>Garantía QA / Seguridad</span>
-                      <span style={{ color: 'var(--accent-cyan)', fontWeight: 700 }}>100% Código Auditado</span>
-                    </div>
-                    <div className="flex justify-between" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '0.4rem' }}>
-                      <span style={{ color: 'var(--text-secondary)' }}>Tiempo de Arranque</span>
-                      <span style={{ color: '#10B981', fontWeight: 700 }}>Menos de 7 días hábiles</span>
-                    </div>
+                    {[...t.estimator.rows, { k: t.estimator.teamLabel, v: selectedSquad.title }].map((row) => (
+                      <div key={row.k} className="flex justify-between" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '0.4rem', gap: '1rem' }}>
+                        <span style={{ color: 'var(--text-secondary)' }}>{row.k}</span>
+                        <span style={{ color: '#FFFFFF', fontWeight: 700, textAlign: 'right' }}>{row.v}</span>
+                      </div>
+                    ))}
                   </div>
 
                   <a
@@ -846,7 +922,7 @@ export default function Home() {
                     className="btn-corp-primary w-full"
                     style={{ textAlign: 'center', padding: '0.85rem', fontSize: '0.92rem' }}
                   >
-                    Solicitar Propuesta para este Alcance →
+                    {t.estimator.cta} →
                   </a>
                 </div>
               </div>
@@ -858,7 +934,7 @@ export default function Home() {
       </section>
 
       {/* ── 6. METRICS & TRUST SECTION ────────────────────────────── */}
-      <section className="section" style={{ backgroundColor: 'var(--bg-surface)', borderTop: '1px solid rgba(56, 189, 248, 0.12)' }}>
+      <section className="section" style={{ backgroundColor: 'var(--bg-surface)', borderTop: '1px solid rgba(var(--rgb-steel), 0.12)' }}>
         <div ref={governanceRef} className="reveal container">
           
           <div className="text-center" style={{ maxWidth: '820px', margin: '0 auto 3.5rem auto' }}>
@@ -870,14 +946,14 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4" style={{ gap: '1.25rem' }}>
-            {t.stats.items.map((stat: any, si: number) => (
+            {t.stats.items.map((stat, si) => (
               <div
                 key={si}
                 className="corp-card text-center"
                 style={{
                   padding: 'clamp(1.5rem, 3vw, 2.25rem)',
-                  backgroundColor: 'rgba(8, 20, 39, 0.85)',
-                  borderColor: 'rgba(0, 194, 255, 0.25)',
+                  backgroundColor: 'rgba(var(--rgb-surface), 0.85)',
+                  borderColor: 'rgba(var(--rgb-cyan), 0.25)',
                 }}
               >
                 <div style={{ fontSize: 'clamp(2.2rem, 5vw, 3rem)', fontWeight: 900, color: 'var(--accent-cyan)', fontFamily: 'var(--font-heading)', lineHeight: 1, marginBottom: '0.5rem' }}>
@@ -894,7 +970,7 @@ export default function Home() {
       </section>
 
       {/* ── 7. SOLUTIONS SHOWCASE GRID ─────────────────────────────── */}
-      <section id="solutions" className="section" style={{ borderTop: '1px solid rgba(56, 189, 248, 0.12)' }}>
+      <section id="model" className="section" style={{ borderTop: '1px solid rgba(var(--rgb-steel), 0.12)' }}>
         <div ref={solutionsRef} className="reveal container">
 
           <div className="text-center" style={{ maxWidth: '820px', margin: '0 auto 3.5rem auto' }}>
@@ -906,13 +982,13 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: '1.5rem' }}>
-            {t.solutions.items.map((sol: any, idx: number) => (
+            {t.solutions.items.map((sol, idx) => (
               <div
                 key={idx}
                 className="corp-card"
                 style={{
                   padding: '1.5rem',
-                  backgroundColor: 'rgba(8, 20, 39, 0.75)',
+                  backgroundColor: 'rgba(var(--rgb-surface), 0.75)',
                 }}
               >
                 <div
@@ -920,8 +996,8 @@ export default function Home() {
                     width: '36px',
                     height: '36px',
                     borderRadius: '8px',
-                    backgroundColor: 'rgba(0, 194, 255, 0.12)',
-                    border: '1px solid rgba(0, 194, 255, 0.3)',
+                    backgroundColor: 'rgba(var(--rgb-cyan), 0.12)',
+                    border: '1px solid rgba(var(--rgb-cyan), 0.3)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -943,11 +1019,31 @@ export default function Home() {
             ))}
           </div>
 
+          {/* Cross-cutting control bar */}
+          <div
+            className="flex flex-col sm:flex-row items-center justify-between text-center"
+            style={{
+              marginTop: '1.5rem',
+              gap: '0.5rem 1.5rem',
+              padding: '1.1rem 1.5rem',
+              borderRadius: '12px',
+              background: 'linear-gradient(90deg, rgba(var(--rgb-blue), 0.16), rgba(var(--rgb-royal), 0.06))',
+              border: '1px solid rgba(var(--rgb-cyan), 0.3)',
+            }}
+          >
+            <span style={{ fontSize: '0.75rem', fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--accent-cyan)' }}>
+              {t.solutions.controlLabel}
+            </span>
+            <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, color: 'var(--text-white)' }}>
+              {t.solutions.controlTitle}
+            </span>
+          </div>
+
         </div>
       </section>
 
       {/* ── 8. CORPORATE B2B CONSULTATION & CONTACT ─────────────────── */}
-      <section id="contact" className="section" style={{ backgroundColor: 'var(--bg-surface)', borderTop: '1px solid rgba(56, 189, 248, 0.12)' }}>
+      <section id="contact" className="section" style={{ backgroundColor: 'var(--bg-surface)', borderTop: '1px solid rgba(var(--rgb-steel), 0.12)' }}>
         <div ref={contactRef} className="reveal container" style={{ maxWidth: '1080px' }}>
           
           <div className="text-center mb-10">
@@ -961,13 +1057,13 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12" style={{ gap: '2rem', alignItems: 'flex-start' }}>
+          <div className="grid grid-cols-1 md:grid-cols-12" style={{ gap: '1.5rem', alignItems: 'flex-start' }}>
 
             {/* Left: Direct Corporate Info */}
-            <div className="md:col-span-5 flex flex-col gap-5">
+            <div className="md:col-span-5 flex flex-col contact-info" style={{ gap: '1.25rem' }}>
               <div className="corp-card" style={{ padding: 'clamp(1.5rem, 3vw, 2rem)' }}>
                 <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-white)', marginBottom: '1.25rem' }}>
-                  Canales Corporativos
+                  {t.contact.channelsTitle}
                 </h3>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
@@ -977,7 +1073,7 @@ export default function Home() {
                     </span>
                     <a
                       href={`mailto:${t.contact.direct.emailVal}`}
-                      style={{ color: 'var(--accent-cyan)', fontSize: '1.05rem', fontWeight: 700 }}
+                      style={{ color: 'var(--accent-cyan)', fontSize: '1.05rem', fontWeight: 700, wordBreak: 'break-word' }}
                     >
                       {t.contact.direct.emailVal}
                     </a>
@@ -1008,28 +1104,28 @@ export default function Home() {
                 style={{
                   padding: '1.25rem 1.5rem',
                   borderRadius: '12px',
-                  backgroundColor: 'rgba(0, 194, 255, 0.05)',
-                  border: '1px solid rgba(0, 194, 255, 0.2)',
+                  backgroundColor: 'rgba(var(--rgb-cyan), 0.05)',
+                  border: '1px solid rgba(var(--rgb-cyan), 0.2)',
                   fontSize: '0.85rem',
                   color: 'var(--text-secondary)',
                   lineHeight: 1.6,
                 }}
               >
                 <div style={{ fontWeight: 700, color: 'var(--accent-cyan)', marginBottom: '0.35rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                  <span>🔒</span> Confidencialidad NDA Garantizada
+                  <span>🔒</span> {t.contact.nda.title}
                 </div>
-                Toda la información compartida está protegida bajo estándares estrictos de confidencialidad empresarial y acuerdos de no divulgación.
+                {t.contact.nda.desc}
               </div>
             </div>
 
             {/* Right: Consultation Request Form */}
-            <div className="md:col-span-7">
-              <div className="corp-card" style={{ padding: 'clamp(1.5rem, 3.5vw, 2.5rem)' }}>
+            <div className="md:col-span-7 contact-form">
+              <div className="corp-card" style={{ padding: 'clamp(1.25rem, 3.5vw, 2.5rem)' }}>
                 {formStatus === 'success' ? (
                   <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
                     <div style={{ fontSize: '3.5rem', marginBottom: '1rem', color: 'var(--accent-cyan)' }}>✓</div>
                     <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-white)', marginBottom: '0.75rem' }}>
-                      Solicitud Registrada
+                      {t.contact.form.successTitle}
                     </h3>
                     <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: '2rem' }}>
                       {t.contact.form.success}
@@ -1042,7 +1138,7 @@ export default function Home() {
                         setFormData({ name: '', email: '', company: '', service: '', message: '' });
                       }}
                     >
-                      Enviar otra consulta
+                      {t.contact.form.reset}
                     </button>
                   </div>
                 ) : (
@@ -1097,11 +1193,10 @@ export default function Home() {
                         onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                       >
                         <option value="">{t.contact.form.servicePlaceholder}</option>
-                        <option value="software">Desarrollo de Software Enterprise</option>
-                        <option value="pm">Gestión / Gerencia de Proyectos</option>
-                        <option value="consulting">Consultoría &amp; Arquitectura Tecnológica</option>
-                        <option value="custom">Soluciones a Medida &amp; Automatización</option>
-                        <option value="squad">Asignación de Squad Senior Dedicado</option>
+                        {t.services.items.map((srv) => (
+                          <option key={srv.id} value={srv.id}>{srv.title}</option>
+                        ))}
+                        <option value="undefined">{t.contact.form.serviceOther}</option>
                       </select>
                     </div>
 
