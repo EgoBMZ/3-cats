@@ -51,7 +51,7 @@ export default function Navbar() {
         }}
       >
         <div className="container flex justify-between items-center" style={{ height: '68px' }}>
-          {/* Official 3Cats Vector Brand Logo */}
+          {/* Official 3CATS logo */}
           <Link
             href="/"
             style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}
@@ -59,11 +59,11 @@ export default function Navbar() {
           >
             {/* Desktop & Tablet: Full Horizontal Vector Logo */}
             <div className="hidden sm:block">
-              <Logo3Cats variant="horizontal" height={36} theme="dark" />
+              <Logo3Cats height={46} priority />
             </div>
             {/* Mobile Phone: Compact Horizontal Vector Logo */}
             <div className="sm:hidden">
-              <Logo3Cats variant="horizontal" height={28} theme="dark" />
+              <Logo3Cats height={40} priority />
             </div>
           </Link>
 
@@ -204,7 +204,7 @@ export default function Navbar() {
               flexShrink: 0,
             }}
           >
-            <Logo3Cats variant="horizontal" height={28} theme="dark" />
+            <Logo3Cats height={40} />
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
               <button

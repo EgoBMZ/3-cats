@@ -19,7 +19,7 @@ export default function RootLayout({
           content="Ingeniería tecnológica para transformar negocios. Automatización de procesos, agentes de IA, datos e inteligencia de negocios, arquitectura cloud, software a la medida y gestión de proyectos."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <meta name="theme-color" content="#02050F" />
       </head>
       <body>
         <LanguageProvider>
