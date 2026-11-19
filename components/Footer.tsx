@@ -8,7 +8,7 @@ export default function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer style={{ backgroundColor: 'var(--bg-base)', borderTop: '1px solid rgba(56, 189, 248, 0.16)', position: 'relative' }}>
+    <footer style={{ backgroundColor: 'var(--bg-base)', borderTop: '1px solid rgba(var(--rgb-steel), 0.16)', position: 'relative' }}>
       {/* Top laser border glow */}
       <div
         style={{
@@ -18,25 +18,25 @@ export default function Footer() {
           transform: 'translateX(-50%)',
           width: '85%',
           height: '1px',
-          background: 'linear-gradient(90deg, transparent, rgba(0, 194, 255, 0.6), transparent)',
+          background: 'linear-gradient(90deg, transparent, rgba(var(--rgb-cyan), 0.6), transparent)',
         }}
       />
 
       {/* Pre-footer Executive CTA Banner */}
-      <div className="section" style={{ paddingBottom: '3.5rem', paddingTop: '4.5rem' }}>
+      <div className="section" style={{ paddingBottom: '2.5rem', paddingTop: 'clamp(3rem, 8vw, 4.5rem)' }}>
         <div className="container">
           <div
             className="corp-card text-center"
             style={{
-              padding: '3.5rem 1.5rem',
-              background: 'radial-gradient(circle at 50% 0%, rgba(0, 102, 255, 0.22) 0%, rgba(8, 20, 39, 0.9) 75%)',
-              borderColor: 'rgba(0, 194, 255, 0.35)',
-              boxShadow: '0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 194, 255, 0.15)',
+              padding: 'clamp(2.25rem, 6vw, 3.5rem) clamp(1.25rem, 4vw, 1.5rem)',
+              background: 'radial-gradient(circle at 50% 0%, rgba(var(--rgb-blue), 0.22) 0%, rgba(var(--rgb-surface), 0.9) 75%)',
+              borderColor: 'rgba(var(--rgb-cyan), 0.35)',
+              boxShadow: '0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(var(--rgb-cyan), 0.15)',
             }}
           >
             <div className="corp-badge mb-4" style={{ margin: '0 auto 1.5rem auto' }}>
               <span className="corp-badge-pulse" />
-              <span>IDEAS · PROYECTOS · RESULTADOS</span>
+              <span>{t.brand.tagline}</span>
             </div>
             <h2 className="heading-lg mb-4" style={{ maxWidth: '820px', margin: '0 auto 1.25rem auto' }}>
               {t.footer.title}
@@ -45,12 +45,12 @@ export default function Footer() {
               {t.footer.desc}
             </p>
             <div className="flex justify-center gap-4 flex-wrap">
-              <a href="#contact" className="btn-corp-primary" style={{ padding: '0.95rem 2.5rem', fontSize: '1rem' }}>
+              <Link href="/#contact" className="btn-corp-primary" style={{ padding: '0.95rem 2.5rem', fontSize: '1rem' }}>
                 {t.footer.cta} →
-              </a>
-              <a href="#methodology" className="btn-corp-secondary" style={{ padding: '0.95rem 2rem' }}>
+              </Link>
+              <Link href="/#methodology" className="btn-corp-secondary" style={{ padding: '0.95rem 2rem' }}>
                 {t.hero.btnSecondary}
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -58,9 +58,9 @@ export default function Footer() {
 
       {/* Main Footer Directory */}
       <div className="container" style={{ padding: '3rem 1.5rem 2rem 1.5rem' }}>
-        <div className="grid grid-cols-1 md:grid-cols-4" style={{ gap: '2.5rem', paddingBottom: '3rem', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: '2.5rem', paddingBottom: '3rem', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
           {/* Brand Column with Pure Vector SVG Logo */}
-          <div className="md:col-span-1" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <Link href="/" style={{ display: 'inline-block' }}>
               <Logo3Cats variant="horizontal" height={38} theme="dark" />
             </Link>
@@ -78,7 +78,7 @@ export default function Footer() {
               {t.footer.aboutUs}
             </h4>
             <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              {t.footer.links.map((link: any, i: number) => (
+              {t.footer.links.map((link, i) => (
                 <li key={i}>
                   <a
                     href={link.href}
@@ -139,9 +139,9 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar: Copyright & Sub-Mottos */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs" style={{ padding: '1.75rem 0 0.5rem 0', color: 'var(--text-muted)' }}>
-          <p>© {new Date().getFullYear()} 3Cats Software Development &amp; Project Delivery. {t.footer.rights}</p>
-          <div className="flex items-center gap-3 text-center" style={{ letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 600 }}>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center" style={{ padding: '1.75rem 0 0.5rem 0', color: 'var(--text-muted)', fontSize: '0.75rem' }}>
+          <p>© {new Date().getFullYear()} 3CATS — Software Development &amp; Project Delivery. {t.footer.rights}</p>
+          <div className="flex flex-wrap justify-center items-center gap-3 text-center" style={{ letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 600 }}>
             <span>{t.brand.bottomBarLeft}</span>
             <span>·</span>
             <span style={{ color: 'var(--accent-cyan)' }}>{t.brand.bottomBarRight}</span>

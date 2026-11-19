@@ -39,7 +39,7 @@ export default function Register() {
     return (
       <div style={{ minHeight: '85vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '4rem 1.5rem', background: 'var(--bg-base)' }}>
         <div style={{ maxWidth: '580px', width: '100%', textAlign: 'center' }}>
-          <div className="corp-card" style={{ padding: '3.5rem 2rem', background: 'rgba(8, 20, 39, 0.95)', borderColor: 'var(--accent-cyan)' }}>
+          <div className="corp-card" style={{ padding: '3.5rem 2rem', background: 'rgba(var(--rgb-surface), 0.95)', borderColor: 'var(--accent-cyan)' }}>
             <div style={{ fontSize: '3.5rem', marginBottom: '1.25rem', color: 'var(--accent-cyan)' }}>✓</div>
             <h2 className="heading-lg mb-4" style={{ color: 'var(--text-white)' }}>{r.successTitle}</h2>
             <p className="text-lead mb-8" style={{ color: 'var(--text-secondary)', lineHeight: 1.75 }}>
@@ -58,7 +58,7 @@ export default function Register() {
     <div style={{ minHeight: '100vh', background: 'var(--bg-base)', paddingBottom: '5rem' }}>
 
       {/* ── Header Banner ─── */}
-      <div style={{ background: 'var(--bg-surface)', borderBottom: '1px solid rgba(56, 189, 248, 0.15)', padding: '4rem 0 3rem' }}>
+      <div style={{ background: 'var(--bg-surface)', borderBottom: '1px solid rgba(var(--rgb-steel), 0.15)', padding: '4rem 0 3rem' }}>
         <div className="container" style={{ maxWidth: '980px', margin: '0 auto' }}>
           <div className="corp-badge mb-4">
             <span className="corp-badge-pulse" />
@@ -86,7 +86,7 @@ export default function Register() {
               <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.15rem' }}>
                 {r.leftBenefits.map((benefit: string, idx: number) => (
                   <li key={idx} style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                    <div style={{ width: '22px', height: '22px', borderRadius: '50%', backgroundColor: 'rgba(0, 194, 255, 0.15)', border: '1px solid var(--accent-cyan)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px', color: 'var(--accent-cyan)' }}>
+                    <div style={{ width: '22px', height: '22px', borderRadius: '50%', backgroundColor: 'rgba(var(--rgb-cyan), 0.15)', border: '1px solid var(--accent-cyan)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px', color: 'var(--accent-cyan)' }}>
                       ✓
                     </div>
                     <span style={{ color: 'var(--text-secondary)', lineHeight: 1.6, fontSize: '0.92rem' }}>{benefit}</span>
@@ -98,13 +98,13 @@ export default function Register() {
             {/* Quick Metrics */}
             <div className="corp-card" style={{ padding: '1.75rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', textAlign: 'center' }}>
               {[
-                { num: '+10', label: language === 'es' ? 'Años de Trayectoria' : 'Years of Track Record' },
-                { num: '100%', label: language === 'es' ? 'Entregas a Tiempo' : 'On-Time Delivery' },
-                { num: 'SLA', label: language === 'es' ? 'Garantía Enterprise' : 'Enterprise SLA' },
-                { num: '4', label: language === 'es' ? 'Pilares Integrados' : 'Integrated Pillars' },
+                { num: '9', label: language === 'es' ? 'Años en gestión de proyectos' : 'Years in project management' },
+                { num: '6', label: language === 'es' ? 'Ejes de servicio' : 'Service practices' },
+                { num: 'Agile', label: language === 'es' ? 'Scrum y Kanban' : 'Scrum & Kanban' },
+                { num: 'On-demand', label: language === 'es' ? 'Equipos por proyecto' : 'Project-based teams' },
               ].map((stat, i) => (
-                <div key={i} style={{ padding: '1rem', background: 'rgba(6, 16, 32, 0.8)', borderRadius: '8px', border: '1px solid rgba(56, 189, 248, 0.15)' }}>
-                  <p style={{ fontSize: '1.6rem', fontWeight: 900, color: 'var(--accent-cyan)', lineHeight: 1 }}>{stat.num}</p>
+                <div key={i} style={{ padding: '1rem', background: 'rgba(var(--rgb-surface), 0.8)', borderRadius: '8px', border: '1px solid rgba(var(--rgb-steel), 0.15)' }}>
+                  <p style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--accent-cyan)', lineHeight: 1 }}>{stat.num}</p>
                   <p style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600, marginTop: '0.35rem', lineHeight: 1.3 }}>{stat.label}</p>
                 </div>
               ))}

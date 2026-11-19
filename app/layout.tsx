@@ -13,10 +13,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
-        <title>3Cats — Software Development & Project Delivery</title>
+        <title>3CATS — Software Development & Project Delivery</title>
         <meta
           name="description"
-          content="Proyectos que impulsan tu negocio. Estrategia + Personas + Tecnología = Resultados. Desarrollo de software enterprise, gestión de proyectos y consultoría tecnológica."
+          content="Ingeniería tecnológica para transformar negocios. Automatización de procesos, agentes de IA, datos e inteligencia de negocios, arquitectura cloud, software a la medida y gestión de proyectos."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
